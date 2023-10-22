@@ -2,8 +2,10 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
 export default function Dashboard({ auth }) {
+
     return (
         <>
+            {console.log(auth.user.isAdmin)}
             {auth.user.isAdmin ? (
                 <AuthenticatedLayout
                     user={auth.user}
@@ -20,7 +22,7 @@ export default function Dashboard({ auth }) {
                     </div>
                 </AuthenticatedLayout>
             ) : (
-                <h1>YOU ARE NOT AN ADMIN</h1>
+                null
             )}
         </>
     );
