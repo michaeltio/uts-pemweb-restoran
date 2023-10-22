@@ -4,11 +4,16 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import DateInput from '@/Components/DateInput';
+import GenderInput from '@/Components/GenderInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
+        firstName: '',
+        lastName: '',
+        birthdate: '',
+        gender: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -22,7 +27,7 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-
+        
         post(route('register'));
     };
 
@@ -31,24 +36,8 @@ export default function Register() {
             <Head title="Register" />
 
             <form onSubmit={submit}>
+                
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
 
                     <TextInput
@@ -63,6 +52,73 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="firstName" value="First Name" />
+
+                    <TextInput
+                        id="firstName"
+                        name="firstName"
+                        value={data.firstName}
+                        className="mt-1 block w-full"
+                        autoComplete="firstName"
+                        isFocused={true}
+                        onChange={(e) => setData('firstName', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.firstName} className="mt-2" />
+                </div>
+                
+                <div className='mt-4'>
+                    <InputLabel htmlFor="lastName" value="Last Name" />
+
+                    <TextInput
+                        id="lastName"
+                        name="lastName"
+                        value={data.lastName}
+                        className="mt-1 block w-full"
+                        autoComplete="lastName"
+                        isFocused={true}
+                        onChange={(e) => setData('lastName', e.target.value)}
+                    />
+
+                    <InputError message={errors.lastName} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="birthdate" value="Birthdate" />
+
+                    <DateInput
+                        id="birthdate"
+                        name="birthdate"
+                        value={data.birthdate}
+                        className="mt-1 block w-full"
+                        autoComplete="off"
+                        isFocused={true}
+                        onChange={(e) => setData('birthdate', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.birthdate} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="gender" value="Gender" />
+
+                    <GenderInput
+                        id="gender"
+                        name="gender"
+                        value={data.gender}
+                        className="mt-1 block w-full"
+                        autoComplete="off"
+                        isFocused={true}
+                        onChange={(e) => setData('gender', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.gender} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
@@ -108,7 +164,7 @@ export default function Register() {
                     </Link>
 
                     <PrimaryButton className="ml-4" disabled={processing}>
-                        Register
+                        Sign Up
                     </PrimaryButton>
                 </div>
             </form>
