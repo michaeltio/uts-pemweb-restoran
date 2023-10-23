@@ -1,13 +1,13 @@
 import React from 'react';
-import Logo from '../../../public/images/assets/temp.png';
 import { Link } from '@inertiajs/react';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 
 function Navbar({ loggedIn }) {
     return (
         <header className="sticky new-font top-0 z-50 w-full bg-black/[0.4] text-slate-50 body-font">
             <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <a className="flex title-font font-medium items-center mb-4 md:mb-0 md:ml-14" href="/">
-                    <img className="w-14" src={Logo} alt='logo' />
+                    <ApplicationLogo/>
                 </a>
                 <nav className="md:ml-auto flex flex-wrap items-center text-white text-base justify-center">
                     <a className="mr-10 hover:underline-offset-2" href="#">Home</a>

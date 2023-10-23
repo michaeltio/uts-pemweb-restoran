@@ -1,4 +1,4 @@
-import A from "../../../public/images/assets/banner-temp.webp"
+import A from "../../../public/images/assets/temp.png"
 
 export default function ApplicationLogo(props) {
     return (
