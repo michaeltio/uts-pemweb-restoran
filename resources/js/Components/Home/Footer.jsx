@@ -15,10 +15,7 @@ export default function Footer() {
                             </h2>
                             <nav className="list-none mb-2">
                                 <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Alias deserunt earum exercitationem dignissimos laboriosam quam
-                                    soluta mollitia perferendis nostrum officia facilis nisi magni velit
-                                    fuga a est, illo dolore molestias!
+                                    At the heart of it all, we are dedicated to serving you. Your satisfaction drives us. Thank you for choosing us, and we look forward to serving you again soon
                                 </p>
                             </nav>
                         </div>

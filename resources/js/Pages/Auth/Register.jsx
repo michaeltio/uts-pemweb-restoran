@@ -46,7 +46,7 @@ export default function Register() {
                         />
                     </div>
                     <div className="w-full md:w-1/2 sm:max-w-md xl:p-0">
-                        <a href='#' className='flex justify-center mb-6 text-2xl font-semibold text-gray-900'>
+                        <a href='/' className='flex justify-center mb-6 text-2xl font-semibold text-gray-900'>
                             <img
                                 className="w-8 h-8 mr-2"
                                 src={Logo}
@@ -87,7 +87,6 @@ export default function Register() {
                                             isFocused={true}
                                             placeholder="First Name"
                                             onChange={(e) => setData('firstName', e.target.value)}
-                                            required
                                         />
 
                                         <InputError message={errors.firstName} className="mt-2" />
@@ -121,7 +120,6 @@ export default function Register() {
                                             autoComplete="off"
                                             isFocused={true}
                                             onChange={(e) => setData('birthdate', e.target.value)}
-                                            required
                                         />
 
                                         <InputError message={errors.birthdate} className="mt-2" />
@@ -138,7 +136,6 @@ export default function Register() {
                                             autoComplete="off"
                                             isFocused={true}
                                             onChange={(e) => setData('gender', e.target.value)}
-                                            required
                                         />
 
                                         <InputError message={errors.gender} className="mt-2" />
@@ -155,7 +152,6 @@ export default function Register() {
                                             autoComplete="new-password"
                                             placeholder="••••••••"
                                             onChange={(e) => setData('password', e.target.value)}
-                                            required
                                         />
 
                                         <InputError message={errors.password} className="mt-2" />
@@ -173,7 +169,6 @@ export default function Register() {
                                             autoComplete="new-password"
                                             placeholder="••••••••"
                                             onChange={(e) => setData('password_confirmation', e.target.value)}
-                                            required
                                         />
 
                                         <InputError message={errors.password_confirmation} className="mt-2" />

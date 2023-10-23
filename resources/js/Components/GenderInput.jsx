@@ -29,7 +29,7 @@ export default forwardRef(function GenderInput({ className = '', isFocused = fal
             value={selectedValue}
             onChange={handleChange}
         >
-            <option value="">Select Gender</option>
+            <option>Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
