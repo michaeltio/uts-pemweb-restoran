@@ -23,9 +23,27 @@ Route::get('/', function () {
     ]);
 });
 
+//incoming change
+//ini untuk test makanan dashboard menu
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+
+//crud admin
+Route::get('/admin', function () {
+    return Inertia::render('Admin');
+});
+
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+
+// Route::get(/)
+
+//incoming change ^^
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,4 +51,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
