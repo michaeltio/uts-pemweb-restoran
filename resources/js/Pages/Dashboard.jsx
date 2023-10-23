@@ -5,8 +5,7 @@ export default function Dashboard({ auth }) {
 
     return (
         <>
-            {console.log(auth.user.isAdmin)}
-            {auth.user.isAdmin ? (
+            {auth.user.isAdmin}
                 <AuthenticatedLayout
                     user={auth.user}
                     header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
@@ -21,9 +20,6 @@ export default function Dashboard({ auth }) {
                         </div>
                     </div>
                 </AuthenticatedLayout>
-            ) : (
-                null
-            )}
         </>
     );
 }
