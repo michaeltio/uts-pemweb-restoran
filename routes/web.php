@@ -41,9 +41,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
-Route::get('/404', function () {
-    return Inertia::render('404');
-});
+// Route::get(/)
+
+//incoming change ^^
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
