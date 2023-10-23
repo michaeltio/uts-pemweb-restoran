@@ -42,7 +42,7 @@ class MenuController extends Controller
 
     public function deleteModel($id)
     {
-     // Use Eloquent to find and delete the model by its ID
+        // Use Eloquent to find and delete the model by its ID
         Menu::destroy($id);
         return response()->json(['message' => 'Model deleted successfully']);
         //return ['result' => 'has ben deleted' . $id];
@@ -53,7 +53,7 @@ class MenuController extends Controller
         try {
             // Find the menu item by its ID
             $menu = Menu::find($id);
-    
+
             if (!$menu) {
                 return response()->json(['error' => 'Menu not found'], 404);
             }
