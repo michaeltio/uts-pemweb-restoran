@@ -1,4 +1,4 @@
-import A from "D:/File NAS27/YouTube/CA & Profile/Finished/NAS27 Logo Revamp (Transparant).png"
+import A from "../../../public/images/assets/banner-temp.webp"
 
 export default function ApplicationLogo(props) {
     return (

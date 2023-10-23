@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.info-text{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bannerPhoto {
+    transform: rotate(-50deg);
+}
