@@ -12,7 +12,7 @@ function Navbar() {
                 <nav className="md:ml-auto flex flex-wrap items-center text-white text-base justify-center">
                     <a className="mr-10 hover:underline-offset-2" href="#">Home</a>
                     <a className="mr-10 hover:underline-offset-2" href="#">Menu</a>
-                    <Link href={route('login')}>Sign In</Link>
+                    <Link href={route('register')}>Sign In</Link>
                     {/* <a className="mr-10 hover:underline-offset-2" href="#">Sign In</a> */}
                     <a className="mr-10">
                         <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
