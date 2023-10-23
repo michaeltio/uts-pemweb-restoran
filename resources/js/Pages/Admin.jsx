@@ -163,54 +163,71 @@ export default function Admin() {
 
     return (
         <div>
-            <h1 className="text-3xl text-center mt-8">Restoran IF330B - 2</h1>
-            <h1 className="text-3xl text-center mt-2">Admin Page</h1>
-            <div className="flex gap-2 justify-center mt-8">
-                {/* <ButtonType isSelected={isButtonSelected} buttonName="All Menu"/> */}
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    All Menu
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Nigiri
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Sashimi
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Sushi Roll
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Donburi
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Appetizer
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Dessert
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Drink
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Bento
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    teppanyaki
-                </button>
-                <button className="px-6 py-3 bg-blue-500 text-white rounded-full font-semibold hover:bg-blue-600 transition duration-300">
-                    Ramen
-                </button>
+            {/* ini header untuk admin */}
+            <div className="fixed top-0 bg-white w-full z-10">
+                <h1 className="text-3xl text-center mt-8">
+                    Restoran IF330B - 2
+                </h1>
+                <h1 className="text-3xl text-center mt-2">Admin Page</h1>
+                <div className="flex gap-2 justify-center mt-8">
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="All Menu"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Sushi Roll"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Sashimi"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Nigiri"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Donburi"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Bento"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Ramen"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Teppanyaki"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Appetizer"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Dessert"
+                    />
+                    <ButtonType
+                        //isSelected={isButtonSelected}
+                        buttonName="Drink"
+                    />
+                </div>
+                <div className="text-center">
+                    <h1 className="text-2xl mt-4">Tabel Menu</h1>
+                    <button
+                        className="bg-green-500 text-white px-4 py-2 rounded-md"
+                        onClick={() => setShowCreateForm(true)}
+                    >
+                        Create New Menu Item
+                    </button>
+                </div>
             </div>
-            {/* tabel menu */}
-            <div className="text-center">
-                <h1 className="text-2xl mt-4">Tabel Menu</h1>
-                <button
-                    className="bg-green-500 text-white px-4 py-2 rounded-md"
-                    onClick={() => setShowCreateForm(true)}
-                >
-                    Create New Menu Item
-                </button>
-                <div className="flex flex-wrap justify-around gap-8">
+            <div className="text-center mt-96">
+                {/* tabel menu */}
+                <div className="flex flex-wrap justify-around gap-8 ">
                     {menus.length > 0 ? (
                         menus.map((menu) => (
                             <div
@@ -252,7 +269,11 @@ export default function Admin() {
                     )}
                     {showConfirmation && (
                         <div className="fixed inset-0 flex items-center justify-center z-50">
-                            <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
+                            {/* Background dim */}
+                            <div className="bg-white p-4 rounded-lg shadow-md text-center relative">
+                                {" "}
+                                {/* Relative position for stacking */}
                                 <p>
                                     Are you sure you want to delete "
                                     {selectedMenu.name_menu}"?
@@ -275,7 +296,9 @@ export default function Admin() {
                     {/* edit form */}
                     {showEditForm && (
                         <div className="fixed inset-0 flex items-center justify-center z-50">
-                            <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
+                            {/* Background dim */}
+                            <div className="bg-white p-4 rounded-lg shadow-md text-center relative">
                                 <p className="text-xl font-semibold mb-4">
                                     Edit Menu: {editedMenu.name_menu}
                                 </p>
@@ -366,10 +389,12 @@ export default function Admin() {
                             </div>
                         </div>
                     )}
-                    {/* create form */}
+                    {/* create new menu form */}
                     {showCreateForm && (
                         <div className="fixed inset-0 flex items-center justify-center z-50">
-                            <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
+                            {/* Background dim */}
+                            <div className="bg-white p-4 rounded-lg shadow-md text-center relative">
                                 <p className="text-xl font-semibold mb-4">
                                     Create New Menu Item
                                 </p>
