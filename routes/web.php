@@ -41,7 +41,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
-// Route::get(/)
+Route::get('/404', function () {
+    return Inertia::render('404');
+});
 
 //incoming change ^^
 

@@ -7,12 +7,21 @@ import Navbar from '@/Layouts/Navbar';
 import { Head } from '@inertiajs/react';
 
 export default function Welcome({ auth }) {
+
+    let isAdmin = 0;
+
+    if (auth && auth.user && 'isAdmin' in auth.user) {
+        isAdmin = auth.user.isAdmin;
+      } else {
+        isAdmin = 0;
+      }
+
     return (
         <>
             <Head title="Sushi King" />
             <div>
-                <Navbar loggedIn={auth.user}/>
-
+                <Navbar loggedIn={auth.user} isAdmin={isAdmin}/>
+                
                 <Opening/>
 
                 <div className='-mt-20'>
