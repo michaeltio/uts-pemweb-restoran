@@ -29,7 +29,7 @@ class MenuController extends Controller
         $menu->menu_desc = $request->input('menu_desc');
         $menu->menu_type = $request->input('menu_type');
 
-        // Handle menu_image upload
+        //Handle menu_image upload
         if ($request->hasFile('menu_image')) {
             $imagePath = $request->file('menu_image')->store('menu_images');
             $menu->menu_image = $imagePath;

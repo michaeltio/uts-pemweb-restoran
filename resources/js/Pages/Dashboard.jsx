@@ -107,10 +107,10 @@ export default function Dashboard({ auth }) {
                 apiUrl,
                 {
                     name_menu: newMenu.name_menu,
-                    menu_price: newMenu.menu_price,
-                    menu_desc: newMenu.menu_desc,
-                    menu_image: newMenu.menu_image,
-                    menu_type: newMenu.menu_type,
+                    price: newMenu.menu_price,
+                    desc_menu: newMenu.menu_desc,
+                    img_menu: newMenu.menu_image,
+                    type_menu: newMenu.menu_type,
                 },
                 {
                     headers: {
@@ -330,6 +330,7 @@ export default function Dashboard({ auth }) {
                                     ) : (
                                         <p>Menu is Empty</p>
                                     )}
+                                    {/* //delete menu */}
                                     {showConfirmation && (
                                         <div className="fixed inset-0 flex items-center justify-center z-50">
                                             <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
