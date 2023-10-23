@@ -29,8 +29,14 @@ Route::get('/', function () {
     ]);
 });
 
+//ini untuk test makanan dashboard menu
 Route::get('/home', function(){
     return Inertia::render('Home');
+});
+
+//crud admin
+Route::get('/admin', function(){
+    return Inertia::render('Admin');
 });
 
 // Route::get('/dashboard', function () {

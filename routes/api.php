@@ -7,5 +7,8 @@ use App\Http\Controllers\MenuController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+//untuk delete menu
 
 Route::get('/menus', [MenuController::class, 'index']);
+Route::delete('/delete-model/{id}', [MenuController::class, 'deleteModel']);
+Route::put('/edit-menu/{id}', [MenuController::class, 'edit']);
