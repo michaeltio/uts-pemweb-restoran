@@ -5,7 +5,7 @@ export default function Dashboard({ auth }) {
 
     return (
         <>
-            {auth.user.isAdmin}
+            {auth.user.isAdmin ? (
                 <AuthenticatedLayout
                     user={auth.user}
                     header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
@@ -20,6 +20,9 @@ export default function Dashboard({ auth }) {
                         </div>
                     </div>
                 </AuthenticatedLayout>
+            ) : (
+                <h1>YOU ARE NOT AN ADMIN</h1>
+            )}
         </>
     );
 }
