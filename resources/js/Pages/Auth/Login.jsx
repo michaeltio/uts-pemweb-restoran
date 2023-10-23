@@ -5,7 +5,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-
+import GuestLayout from '@/Layouts/GuestLayout';
 import Drawing from '../../../../public/images/assets/drawing.png';
 import Logo from '../../../../public/images/assets/temp.png';
 
@@ -29,34 +29,16 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <>
+        <GuestLayout>
             <Head title="Log in"/>
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
-            <section className='mont-font relative'>
-                <div className='flex flex-col md:flex-row items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-                    <div className="hidden md:block w-1/2">
-                        <img
-                            className="absolute top-12 left-10 z-0 w-3/6 grayscale opacity-30"
-                            src={Drawing} alt='drawing'
-                        />
-                    </div>
-                    <div className="w-full md:w-1/2 sm:max-w-md xl:p-0">
-                        <a href='/' className='flex justify-center mb-6 text-2xl font-semibold text-gray-900'>
-                            <img
-                                className="w-8 h-8 mr-2"
-                                src={Logo}
-                                alt="logo"
-                            />
-                            Sushi King
-                        </a>
-                        <div className="bg-white rounded-lg shadow-xl">
-                            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                                    Sign in to your account
-                                </h1>
-                                <form className='space-y-4 md:space-y-6' onSubmit={submit}>
+            <div className="bg-white rounded-lg shadow-xl">
+                  <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                          Sign in to your account
+                      </h1>
+                      <form className='space-y-4 md:space-y-6' onSubmit={submit}>
                                     <div>
                                         <InputLabel htmlFor="email" value="Email" />
                                         <TextInput
@@ -68,6 +50,7 @@ export default function Login({ status, canResetPassword }) {
                                             autoComplete="username"
                                             isFocused={true}
                                             placeholder="name@company.com"
+                                            required
                                             onChange={(e) => setData('email', e.target.value)}
                                         />
                                         <InputError message={errors.email} className="mt-2" />
@@ -82,6 +65,7 @@ export default function Login({ status, canResetPassword }) {
                                             className="mt-1 block w-full"
                                             autoComplete="current-password"
                                             placeholder="••••••••"
+                                            required
                                             onChange={(e) => setData('password', e.target.value)}
                                         />
                                         <InputError message={errors.password} className="mt-2" />
@@ -115,12 +99,8 @@ export default function Login({ status, canResetPassword }) {
                                         Don't have an account yet? <Link href={route('register')} className="font-medium text-primary-600 hover:underline">Sign up</Link>
                                     </p>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+                  </div>
+              </div>
             {/*
             Default Format
             <form onSubmit={submit}>
@@ -184,6 +164,6 @@ export default function Login({ status, canResetPassword }) {
                     </PrimaryButton>
                 </div>
             </form> */}
-        </>
+        </GuestLayout>
     );
 }

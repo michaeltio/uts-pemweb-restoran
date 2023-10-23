@@ -6,9 +6,7 @@ import TextInput from '@/Components/TextInput';
 import DateInput from '@/Components/DateInput';
 import GenderInput from '@/Components/GenderInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-
-import Drawing from '../../../../public/images/assets/drawing.png';
-import Logo from '../../../../public/images/assets/temp.png';
+import GuestLayout from '@/Layouts/GuestLayout';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -34,26 +32,9 @@ export default function Register() {
     };
 
     return (
-        <>
+        <GuestLayout>
             <Head title="Register" />
 
-            <section className='mont-font relative'>
-                <div className='flex flex-col md:flex-row items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-                    <div className="hidden md:block w-1/2">
-                        <img
-                            className="absolute top-12 left-10 z-0 w-3/6 grayscale opacity-30"
-                            src={Drawing} alt='drawing'
-                        />
-                    </div>
-                    <div className="w-full md:w-1/2 sm:max-w-md xl:p-0">
-                        <a href='/' className='flex justify-center mb-6 text-2xl font-semibold text-gray-900'>
-                            <img
-                                className="w-8 h-8 mr-2"
-                                src={Logo}
-                                alt="logo"
-                            />
-                            Sushi King
-                        </a>
                         <div className="bg-white rounded-lg shadow-xl">
                             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
@@ -71,6 +52,7 @@ export default function Register() {
                                             autoComplete="username"
                                             isFocused={true}
                                             placeholder="name@company.com"
+                                            required
                                             onChange={(e) => setData('email', e.target.value)}
                                         />
                                         <InputError message={errors.email} className="mt-2" />
@@ -86,6 +68,7 @@ export default function Register() {
                                             autoComplete="firstName"
                                             isFocused={true}
                                             placeholder="First Name"
+                                            required
                                             onChange={(e) => setData('firstName', e.target.value)}
                                         />
 
@@ -119,6 +102,7 @@ export default function Register() {
                                             className="mt-1 block w-full"
                                             autoComplete="off"
                                             isFocused={true}
+                                            required
                                             onChange={(e) => setData('birthdate', e.target.value)}
                                         />
 
@@ -135,6 +119,7 @@ export default function Register() {
                                             className="mt-1 block w-full"
                                             autoComplete="off"
                                             isFocused={true}
+                                            required
                                             onChange={(e) => setData('gender', e.target.value)}
                                         />
 
@@ -151,6 +136,7 @@ export default function Register() {
                                             className="mt-1 block w-full"
                                             autoComplete="new-password"
                                             placeholder="••••••••"
+                                            required
                                             onChange={(e) => setData('password', e.target.value)}
                                         />
 
@@ -168,6 +154,7 @@ export default function Register() {
                                             className="mt-1 block w-full"
                                             autoComplete="new-password"
                                             placeholder="••••••••"
+                                            required
                                             onChange={(e) => setData('password_confirmation', e.target.value)}
                                         />
 
@@ -184,9 +171,6 @@ export default function Register() {
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
 
             {/*
             Default Format
@@ -323,6 +307,6 @@ export default function Register() {
                     </PrimaryButton>
                 </div>
             </form> */}
-        </>
+        </GuestLayout>
     );
 }

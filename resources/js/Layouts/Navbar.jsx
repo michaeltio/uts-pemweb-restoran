@@ -37,7 +37,12 @@ function Navbar({ loggedIn, isAdmin }) {
                               Admin Page
                             </Link>
                         ) : (
-                          null
+                          <Link 
+                            href={route('404')}
+                            className="mr-10 hover:underline-offset-2"
+                            >
+                              Order
+                            </Link>
                         )}
                         <Link
                         href={route('logout')} method="post" as="button"

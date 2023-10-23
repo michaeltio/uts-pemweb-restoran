@@ -21,7 +21,7 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register')
     ]);
-});
+})->name('/');
 
 //incoming change
 //ini untuk test makanan dashboard menu
@@ -43,7 +43,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/404', function () {
     return Inertia::render('404');
-});
+})->name('404');
 
 //incoming change ^^
 

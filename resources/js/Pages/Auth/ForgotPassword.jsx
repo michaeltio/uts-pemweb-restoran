@@ -2,9 +2,7 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, useForm, Link } from '@inertiajs/react';
-
-import Drawing from '../../../../public/images/assets/drawing.png';
-import Logo from '../../../../public/images/assets/temp.png';
+import GuestLayout from '@/Layouts/GuestLayout';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -18,28 +16,10 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <>
+        <GuestLayout>
             <Head title="Forgot Password" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-
-            <section className='mont-font relative'>
-                <div className='flex flex-col md:flex-row items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-                    <div className="hidden md:block w-1/2">
-                        <img
-                            className="absolute top-12 left-10 z-0 w-3/6 grayscale opacity-30"
-                            src={Drawing} alt='drawing'
-                        />
-                    </div>
-                    <div className="w-full md:w-1/2 sm:max-w-md xl:p-0">
-                        <a href='/' className='flex justify-center mb-6 text-2xl font-semibold text-gray-900'>
-                            <img
-                                className="w-8 h-8 mr-2"
-                                src={Logo}
-                                alt="logo"
-                            />
-                            Sushi King
-                        </a>
                         <div className="bg-white rounded-lg shadow-xl">
                             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div className="mb-4 text-sm text-gray-600">
@@ -73,9 +53,6 @@ export default function ForgotPassword({ status }) {
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-        </>
+        </GuestLayout>
     );
 }

@@ -4,12 +4,17 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
+import DateInput from '@/Components/DateInput';
+import GenderInput from '@/Components/GenderInput';
 
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        birthdate: user.birthdate,
+        gender: user.gender,
         email: user.email,
     });
 
@@ -31,19 +36,67 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="firstName" value="First Name" />
 
                     <TextInput
-                        id="name"
+                        id="firstName"
                         className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
+                        value={data.firstName}
+                        onChange={(e) => setData('firstName', e.target.value)}
                         required
                         isFocused
-                        autoComplete="name"
+                        autoComplete="firstName"
                     />
 
-                    <InputError className="mt-2" message={errors.name} />
+                    <InputError className="mt-2" message={errors.firstName} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="lastName" value="Last Name" />
+
+                    <TextInput
+                        id="lastName"
+                        className="mt-1 block w-full"
+                        value={data.lastName}
+                        onChange={(e) => setData('lastName', e.target.value)}
+                        required
+                        isFocused
+                        autoComplete="lastName"
+                    />
+
+                    <InputError className="mt-2" message={errors.lastName} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="birthdate" value="Birthdate" />
+
+                    <DateInput
+                        id="birthdate"
+                        className="mt-1 block w-full"
+                        value={data.birthdate}
+                        onChange={(e) => setData('birthdate', e.target.value)}
+                        required
+                        isFocused
+                        autoComplete="birthdate"
+                    />
+
+                    <InputError className="mt-2" message={errors.birthdate} />
+                </div>
+
+                <div>
+                    <InputLabel htmlFor="gender" value="Gender" />
+
+                    <GenderInput
+                        id="gender"
+                        className="mt-1 block w-full"
+                        value={data.gender}
+                        onChange={(e) => setData('gender', e.target.value)}
+                        required
+                        isFocused
+                        autoComplete="gender"
+                    />
+
+                    <InputError className="mt-2" message={errors.gender} />
                 </div>
 
                 <div>
