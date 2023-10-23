@@ -3,7 +3,7 @@ import Banner from "../../../../public/images/assets/banner-temp.png";
 import Banner2 from "../../../../public/images/assets/banner2.png";
 import Leaf from "../../../../public/images/assets/leaf.png";
 import SushiDecor from "../../../../public/images/assets/sushi-decor.png";
-import '../../../css/home.css';
+import '../../../css/app.css';
 
 export default function Opening() {
   return (
@@ -33,7 +33,7 @@ export default function Opening() {
                 />
             </div>
             <p className="
-            text-2xl mb-3 -mt-14 font-black tracking-wider leading-normal 
+            text-2xl mb-3 -mt-14 tracking-wider leading-normal 
             2xl:text-7xl 2xl:leading-snug xl:tracking-wider
             xl:text-6xl xl:leading-normal xl:tracking-wider
             lg:leading-snug lg:text-6xl lg:tacking-wider
@@ -48,7 +48,7 @@ export default function Opening() {
                 Creations
             </p>
             <p className="
-            info-text font-black text-xs tracking-widest leading-loose mr-14
+            info-text text-xs tracking-widest leading-loose mr-14
             2xl:text-md 2xl:leading-loose 2xl:tracking-widest 
             xl:text-sm xl:leading-loose xl:tracking-widest
             lg:text-sm lg:tracking-wider lg:leading-loose lg:-mr-20 

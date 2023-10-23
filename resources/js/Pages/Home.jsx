@@ -4,7 +4,7 @@ import Greetings from '@/Components/Home/Greetings';
 import Opening from '@/Components/Home/Opening';
 import View from '@/Components/Home/View';
 import Navbar from '@/Layouts/Navbar';
-import { Link, Head } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
 export default function Welcome({ auth }) {
     return (
