@@ -8,11 +8,12 @@ import axios from "axios";
 import ButtonType from "../Components/Crud/ButtonType";
 
 export default function Dashboard({ auth }) {
-    // const [selectedButton, setSelectedButton] = useState<number>(1);
+    const [selectedButton, setSelectedButton] = useState(1);
 
-    // const handleButtonClick = (id) => {
-    //     setSelectedButton(id);
-    //   }
+    const handleButtonClick = (id) => {
+        setSelectedButton(id);
+        //console.log(selectedButton);
+    };
 
     //baca semua data makanan
     const [menus, setMenus] = useState([]);
@@ -27,6 +28,22 @@ export default function Dashboard({ auth }) {
         };
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (selectedButton === 1) {
+            setContent(menus);
+        } else if (selectedButton === 2) {
+            setContent(menus.filter((item) => item == 2));
+        } else if (selectedButton === 3) {
+            setContent(menus.filter((item) => item == 3));
+        } else if (selectedButton === 4) {
+            setContent(menus.filter((item) => item == 4));
+        } else if (selectedButton === 5) {
+            setContent(menus.filter((item) => item == 5));
+        } else if (selectedButton === 6) {
+            setContent(menus.filter((item) => item == 6));
+        }
+    }, [selectedButton]);
 
     //untuk delete
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -183,47 +200,69 @@ export default function Dashboard({ auth }) {
                                 </h1>
                                 <div className="flex gap-2 justify-center mt-8">
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={1}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 1}
                                         buttonName="All Menu"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={2}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 2}
                                         buttonName="Sushi Roll"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={3}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 3}
                                         buttonName="Sashimi"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={4}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 4}
                                         buttonName="Nigiri"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={5}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 5}
                                         buttonName="Donburi"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={6}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 6}
                                         buttonName="Bento"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={7}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 7}
                                         buttonName="Ramen"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={8}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 8}
                                         buttonName="Teppanyaki"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={9}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 9}
                                         buttonName="Appetizer"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={10}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 10}
                                         buttonName="Dessert"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={11}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 11}
                                         buttonName="Drink"
                                     />
                                 </div>
@@ -249,6 +288,9 @@ export default function Dashboard({ auth }) {
                                                 key={menu.id}
                                                 className="bg-white shadow-lg rounded-lg overflow-hidden w-96 p-4"
                                             >
+                                                <h1 className="text-xl font-semibold">
+                                                    id {menu.id}
+                                                </h1>
                                                 <h1 className="text-xl font-semibold">
                                                     {menu.name_menu}
                                                 </h1>
