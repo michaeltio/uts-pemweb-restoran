@@ -16,6 +16,7 @@ export default function Footer() {
                             <nav className="list-none mb-2">
                                 <p>
                                     At the heart of it all, we are dedicated to serving you. Your satisfaction drives us. Thank you for choosing us, and we look forward to serving you again soon
+                                    <br/>全てのことの中で、私たちは皆様にご奉仕することに心血を注いでおります。皆様のご満足が、私たちの原動力です。ご選択いただき、誠にありがとうございます。そして、またご利用いただけることを心よりお待ちしております。
                                 </p>
                             </nav>
                         </div>
