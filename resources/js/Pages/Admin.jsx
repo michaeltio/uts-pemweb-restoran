@@ -215,7 +215,7 @@ export default function Admin() {
                         buttonName="Drink"
                     />
                 </div>
-                <div className="text-center">
+                <div className="text-center mb-8">
                     <h1 className="text-2xl mt-4">Tabel Menu</h1>
                     <button
                         className="bg-green-500 text-white px-4 py-2 rounded-md"
