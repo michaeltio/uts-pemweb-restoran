@@ -13,6 +13,33 @@ class MenuController extends Controller
         return response()->json($menus);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name_menu' => 'required|string',
+            'menu_price' => 'required|numeric',
+            'menu_desc' => 'string',
+            //'menu_image' => 'file|image|max:2048', // Adjust image validation rules as needed
+            'menu_type' => 'string',
+        ]);
+
+        $menu = new Menu;
+        $menu->name_menu = $request->input('name_menu');
+        $menu->menu_price = $request->input('menu_price');
+        $menu->menu_desc = $request->input('menu_desc');
+        $menu->menu_type = $request->input('menu_type');
+
+        // Handle menu_image upload
+        if ($request->hasFile('menu_image')) {
+            $imagePath = $request->file('menu_image')->store('menu_images');
+            $menu->menu_image = $imagePath;
+        }
+
+        $menu->save();
+
+        return response()->json(['message' => 'Menu created successfully'], 201);
+    }
+
     public function deleteModel($id)
     {
      // Use Eloquent to find and delete the model by its ID
@@ -25,13 +52,17 @@ class MenuController extends Controller
     {
         try {
             // Find the menu item by its ID
-            $menu = Menu::findOrFail($id);
-            
-            error_log("Test");
+            $menu = Menu::find($id);
+    
+            if (!$menu) {
+                return response()->json(['error' => 'Menu not found'], 404);
+            }
             // Update the menu item's attributes based on the request data
             //$menu->name_menu = $request->input('name_menu');
-            $menu->name_menu = $request->input('name_menu');
-            // Update other attributes as needed
+            // $menu->price = $request->input('menu_price');
+            // $menu->desc_menu = $request->input('menu_desc');
+            // $menu->img_menu = $request->input('menu_image');
+            // $menu->type_menu = $request->input('menu_type');
 
             // Save the changes
             $menu->save();

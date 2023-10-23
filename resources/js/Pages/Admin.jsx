@@ -21,65 +21,23 @@ export default function Admin(){
         };
         fetchData();
     }, []);
-
+    
     // const [selectedButton, setSelectedButton] = useState<number>(1);
-
+    
     // const handleButtonClick = (id) => {
-    //     setSelectedButton(id);
-    //   }
-
-
-    //untuk delete
-    const [showConfirmation, setShowConfirmation] = useState(false);
-    const [selectedMenu, setSelectedMenu] = useState(null);
-
+        //     setSelectedButton(id);
+        //   }
+        
+        
+        //untuk delete
+        const [showConfirmation, setShowConfirmation] = useState(false);
+        const [selectedMenu, setSelectedMenu] = useState(null);
+        
     const handleDelete = (menu) => {
         setShowConfirmation(true);
         setSelectedMenu(menu);
     };
-
-    // State for controlling the edit form
-  const [showEditForm, setShowEditForm] = useState(false);
-  const [editedMenu, setEditedMenu] = useState(null);
-
-  const handleEdit = (menu) => {
-    setEditedMenu({ ...menu }); // Copy the menu data to the edit form
-    setShowEditForm(true);
-  };
-
-  const handleConfirmEdit = async () => {
-    // Send an API request to update the edited menu
-    if (editedMenu) {
-      // Define the API endpoint URL for editing
-      const apiUrl = `/api/edit-model/${editedMenu.id}`;
-      console.log('editedMenu:', editedMenu);
-
-      try {
-        const response = await axios.put(apiUrl, editedMenu, {
-          headers: {
-            'Content-Type': 'application/json',
-            // Add any other headers your API requires
-          },
-        });
-
-        if (response.status === 200) {
-          // Request was successful
-          console.log('Model edited successfully');
-          // Handle any response data as needed
-
-          // Close the edit form
-          setShowEditForm(false);
-          setEditedMenu(null);
-        } else {
-          // Request failed
-          console.error('Model editing failed');
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    }
-  };
-
+    
     const handleConfirmDelete = async () => {
         try {
             // Define the API endpoint URL for model deletion
@@ -107,10 +65,101 @@ export default function Admin(){
           } catch (error) {
             console.error('An error occurred:', error);
           }
-
+    
         setShowConfirmation(false);
         setSelectedMenu(null);
     };
+
+    //create new menu
+    const initialNewMenuState = {
+    name_menu: '',
+    menu_price: 0,
+    menu_desc: '',
+    menu_image: null, // Use null or an initial image value
+    menu_type: '',
+};
+
+const [newMenu, setNewMenu] = useState(initialNewMenuState);
+const [showCreateForm, setShowCreateForm] = useState(false);
+
+const handleCreate = async () => {
+    // Define the API endpoint URL for creating a new menu item
+    const apiUrl = '/api/create-menu'; // Replace with your actual API endpoint
+
+    try {
+        const response = await axios.post(apiUrl, {
+            name_menu: newMenu.name_menu,
+            menu_price: newMenu.menu_price,
+            menu_desc: newMenu.menu_desc,
+            menu_image: newMenu.menu_image,
+            menu_type: newMenu.menu_type,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any other headers your API requires
+            },
+        });
+
+        if (response.status === 201) {
+            // Item created successfully
+            console.log('Menu item created successfully');
+            // You can also update the state with the newly created item
+            // Close the create form
+            setShowCreateForm(false);
+            setNewMenu(initialNewMenuState); // Reset the form fields
+        } else {
+            // Creation failed
+            console.error('Menu item creation failed');
+        }
+    } catch (error) {
+        // Handle network errors
+        console.error('An error occurred:', error);
+    }
+};
+
+    // untuk edit form
+    const [showEditForm, setShowEditForm] = useState(false);
+    const [editedMenu, setEditedMenu] = useState(null);
+    
+    const handleEdit = (menu) => {
+        setEditedMenu({ ...menu }); // Copy the menu data to the edit form
+        setShowEditForm(true);
+    };
+    
+
+  const handleConfirmEdit = async () => {
+    // Send an API request to update the edited menu
+    if (editedMenu) {
+        // Define the API endpoint URL for editing
+        const apiUrl = `/api/edit-model/${editedMenu.id}`;
+        console.log('editedMenu:', editedMenu);
+
+        try {
+            const response = await axios.put(apiUrl, editedMenu, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any other headers your API requires
+                },
+            });
+
+            if (response.status === 200) {
+                // Request was successful
+                console.log('Model edited successfully');
+                // Handle any response data as needed
+
+                // Close the edit form
+                setShowEditForm(false);
+                setEditedMenu(null);
+            } else {
+                // Request failed
+                console.error('Model editing failed');
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
+    }
+};
+
   return (
     <div>
         <h1 className='text-3xl text-center mt-8'>Restoran IF330B - 2</h1> 
@@ -132,6 +181,12 @@ export default function Admin(){
         {/* tabel menu */}
         <div className='text-center'>
             <h1 className='text-2xl mt-4'>Tabel Menu</h1>
+            <button
+    className="bg-green-500 text-white px-4 py-2 rounded-md"
+    onClick={() => setShowCreateForm(true)}
+>
+    Create New Menu Item
+</button>
             <div className='flex flex-wrap justify-around gap-8'>
                 {menus.length > 0 ? (
                     menus.map(menu => (
@@ -169,36 +224,147 @@ export default function Admin(){
                     </div>
                 </div>
             )}
-            {showEditForm && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                <div className="bg-white p-4 rounded-lg shadow-md text-center">
-                    {/* Create a form for editing the model */}
-                    <p>Edit Model: {editedMenu.name_menu}</p>
+            {/* edit form */}
+                {showEditForm && (
+                    <div className="fixed inset-0 flex items-center justify-center z-50">
+                        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+                            <p className="text-xl font-semibold mb-4">Edit Menu: {editedMenu.name_menu}</p>
+                            <form>
+                                <div className="mb-3">
+                                    <input
+                                        type="text"
+                                        value={editedMenu.name_menu}
+                                        onChange={(e) => setEditedMenu({ ...editedMenu, name_menu: e.target.value })}
+                                        placeholder="New Name"
+                                        className="w-full p-2 border rounded"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <input
+                                        type="number"
+                                        value={editedMenu.price}
+                                        onChange={(e) => setEditedMenu({ ...editedMenu, price: e.target.value })}
+                                        placeholder="New Price"
+                                        className="w-full p-2 border rounded"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <textarea
+                                        value={editedMenu.desc_menu}
+                                        onChange={(e) => setEditedMenu({ ...editedMenu, desc_menu: e.target.value })}
+                                        placeholder="New Description"
+                                        className="w-full p-2 border rounded"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <input
+                                        type="file"
+                                        onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            // Handle the selected file (e.g., upload it to the server)
+                                        }}
+                                        className="w-full p-2 border rounded"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <input
+                                        type="text"
+                                        value={editedMenu.type_menu}
+                                        onChange={(e) => setEditedMenu({ ...editedMenu, type_menu: e.target.value })}
+                                        placeholder="New Type"
+                                        className="w-full p-2 border rounded"
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <button
+                                        className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
+                                        onClick={handleConfirmEdit}
+                                    >
+                                        Save Changes
+                                    </button>
+                                    <button
+                                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
+                                        onClick={() => {
+                                            setShowEditForm(false);
+                                            setEditedMenu(null);
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+            {/* create form */}
+            {showCreateForm && (
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="bg-white p-4 rounded-lg shadow-md text-center">
+            <p className="text-xl font-semibold mb-4">Create New Menu Item</p>
+            <form>
+                <div className="mb-3">
                     <input
                         type="text"
-                        value={editedMenu.name_menu}
-                        onChange={(e) => setEditedMenu({ ...editedMenu, name_menu: e.target.value })}
-                        placeholder="New Name"
+                        value={newMenu.name_menu}
+                        onChange={(e) => setNewMenu({ ...newMenu, name_menu: e.target.value })}
+                        placeholder="Name"
+                        className="w-full p-2 border rounded"
                     />
-                    {/* Add other form fields for editing */}
+                </div>
+                <div className="mb-3">
+                    <input
+                        type="number"
+                        value={newMenu.menu_price}
+                        onChange={(e) => setNewMenu({ ...newMenu, menu_price: e.target.value })}
+                        placeholder="Price"
+                        className="w-full p-2 border rounded"
+                    />
+                </div>
+                <div className="mb-3">
+                    <textarea
+                        value={newMenu.menu_desc}
+                        onChange={(e) => setNewMenu({ ...newMenu, menu_desc: e.target.value })}
+                        placeholder="Description"
+                        className="w-full p-2 border rounded"
+                    />
+                </div>
+                <div className="mb-3">
+                    <input
+                        type="file"
+                        onChange={(e) => setNewMenu({ ...newMenu, menu_image: e.target.files[0] })}
+                        className="w-full p-2 border rounded"
+                    />
+                </div>
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        value={newMenu.menu_type}
+                        onChange={(e) => setNewMenu({ ...newMenu, menu_type: e.target.value })}
+                        placeholder="Type"
+                        className="w-full p-2 border rounded"
+                    />
+                </div>
+                <div className="mb-4">
                     <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md m-2"
-                        onClick={handleConfirmEdit}
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
+                        onClick={handleCreate}
                     >
-                        Save Changes
+                        Create
                     </button>
                     <button
-                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md m-2"
+                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
                         onClick={() => {
-                            setShowEditForm(false);
-                            setEditedMenu(null);
-                    }}
+                            setShowCreateForm(false);
+                            setNewMenu(initialNewMenuState); // Reset the form fields
+                        }}
                     >
                         Cancel
                     </button>
                 </div>
-                </div>
-            )}
+            </form>
+        </div>
+    </div>
+)}
             </div>
         </div>
     </div>
