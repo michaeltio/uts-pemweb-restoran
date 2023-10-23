@@ -1,10 +1,10 @@
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import './Categories.css';
+import '../../../css/categories.css';
 
 import { Pagination } from 'swiper/modules';
 
@@ -16,7 +16,7 @@ import Categories5 from '../../../../public/images/assets/categories-5.png';
 import Categories6 from '../../../../public/images/assets/categories-6.png';
 
 
-function Categories() {
+export default function Categories() {
     return (
         <div className='w-full h-full'>
             <div className='mx-auto text-center'>
@@ -135,5 +135,3 @@ function Categories() {
         </div>
     );
 };
-
-export default Categories;

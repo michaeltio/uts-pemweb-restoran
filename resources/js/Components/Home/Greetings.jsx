@@ -1,6 +1,6 @@
 import React from "react";
 
-function Greetings() {
+export default function Greetings() {
     return (
         <section className="body-font text-black-900 mx-14">
             <div className="container px-5 py-24 mx-auto">
@@ -20,5 +20,3 @@ function Greetings() {
         </section>
     );
 };
-
-export default Greetings;
