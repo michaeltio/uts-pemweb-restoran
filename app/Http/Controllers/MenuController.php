@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+
     public function index()
     {
         $menus = Menu::all();
@@ -17,24 +18,27 @@ class MenuController extends Controller
     {
         $request->validate([
             'name_menu' => 'required|string',
-            'menu_price' => 'required|numeric',
-            'menu_desc' => 'string',
-            //'menu_image' => 'file|image|max:2048', // Adjust image validation rules as needed
-            'menu_type' => 'string',
+            'price' => 'required|numeric',
+            'desc_menu' => 'string',
+            'img_menu' => 'file|image|max:2048', // Adjust image validation rules as needed
+            'type_menu' => 'string',
         ]);
 
         $menu = new Menu;
         $menu->name_menu = $request->input('name_menu');
-        $menu->menu_price = $request->input('menu_price');
-        $menu->menu_desc = $request->input('menu_desc');
-        $menu->menu_type = $request->input('menu_type');
+        $menu->price = $request->input('price');
+        $menu->desc_menu = $request->input('desc_menu');
+        $menu->type_menu = $request->input('type_menu');
 
-        // Handle menu_image upload
-        if ($request->hasFile('menu_image')) {
-            $imagePath = $request->file('menu_image')->store('menu_images');
-            $menu->menu_image = $imagePath;
+        //Handle menu_image upload
+        if ($request->hasFile('img_menu')) {
+            $file = $request->file('img_menu');
+            $originalFilename = $file->getClientOriginalName(); // Get the original filename
+            $destinationPath = public_path('public/images/menus'); // Change the path to 'public'
+            $file->storeAs('public/images/menus', $originalFilename);
         }
 
+        $menu->img_menu = $originalFilename;
         $menu->save();
 
         return response()->json(['message' => 'Menu created successfully'], 201);
@@ -57,21 +61,27 @@ class MenuController extends Controller
             if (!$menu) {
                 return response()->json(['error' => 'Menu not found'], 404);
             }
+
             // Update the menu item's attributes based on the request data
-            //$menu->name_menu = $request->input('name_menu');
-            // $menu->price = $request->input('menu_price');
-            // $menu->desc_menu = $request->input('menu_desc');
-            // $menu->img_menu = $request->input('menu_image');
-            // $menu->type_menu = $request->input('menu_type');
+            $menu->name_menu = $request->input('name_menu');
+            $menu->price = $request->input('price');
+            $menu->desc_menu = $request->input('desc_menu');
+            // $menu->img_menu = $request->input('img_menu');
+            $menu->type_menu = $request->input('type_menu');
+            // $menu->name_menu = "testing";
+            // $menu->price = 50000;
+            // $menu->desc_menu = "ini sushi indomie";
+            //$menu->img_menu = $request->img_menu;
+            //$menu->type_menu = "tapi jenisnya pizza";
 
             // Save the changes
             $menu->save();
 
             // You can return a success response, if needed
-            return response()->json(['message' => 'Menu item updated successfully']);
+            return response()->json(['message' => $request->input('name_menu')]);
         } catch (\Exception $e) {
             // Handle any exceptions or errors
-            return response()->json(['error' => 'Failed to update menu item'], 500);
+            return response()->json(['error' => $e], 500);
         }
     }
 }

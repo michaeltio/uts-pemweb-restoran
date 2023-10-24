@@ -8,11 +8,12 @@ import axios from "axios";
 import ButtonType from "../Components/Crud/ButtonType";
 
 export default function Dashboard({ auth }) {
-    // const [selectedButton, setSelectedButton] = useState<number>(1);
+    const [selectedButton, setSelectedButton] = useState(1);
 
-    // const handleButtonClick = (id) => {
-    //     setSelectedButton(id);
-    //   }
+    const handleButtonClick = (id) => {
+        setSelectedButton(id);
+        //console.log(selectedButton);
+    };
 
     //baca semua data makanan
     const [menus, setMenus] = useState([]);
@@ -25,8 +26,25 @@ export default function Dashboard({ auth }) {
                 console.log(error);
             }
         };
+        if (fetchData.length) return;
         fetchData();
     }, []);
+
+    // useEffect(() => {
+    //     if (selectedButton === 1) {
+    //         setContent(menus);
+    //     } else if (selectedButton === 2) {
+    //         setContent(menus.filter((item) => item == 2));
+    //     } else if (selectedButton === 3) {
+    //         setContent(menus.filter((item) => item == 3));
+    //     } else if (selectedButton === 4) {
+    //         setContent(menus.filter((item) => item == 4));
+    //     } else if (selectedButton === 5) {
+    //         setContent(menus.filter((item) => item == 5));
+    //     } else if (selectedButton === 6) {
+    //         setContent(menus.filter((item) => item == 6));
+    //     }
+    // }, [selectedButton]);
 
     //untuk delete
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -70,15 +88,18 @@ export default function Dashboard({ auth }) {
     };
 
     //create new menu
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const initialNewMenuState = {
         name_menu: "",
-        menu_price: 0,
-        menu_desc: "",
-        menu_image: null, // Use null or an initial image value
-        menu_type: "",
+        price: 0,
+        desc_menu: "",
+        img_menu: null,
+        type_menu: "",
     };
 
+    //ini form add nya
     const [newMenu, setNewMenu] = useState(initialNewMenuState);
+    //ini untuk on off pop up nya
     const [showCreateForm, setShowCreateForm] = useState(false);
 
     const handleCreate = async () => {
@@ -90,14 +111,14 @@ export default function Dashboard({ auth }) {
                 apiUrl,
                 {
                     name_menu: newMenu.name_menu,
-                    menu_price: newMenu.menu_price,
-                    menu_desc: newMenu.menu_desc,
-                    menu_image: newMenu.menu_image,
-                    menu_type: newMenu.menu_type,
+                    price: newMenu.price,
+                    desc_menu: newMenu.desc_menu,
+                    img_menu: newMenu.img_menu,
+                    type_menu: newMenu.type_menu,
                 },
                 {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                         // Add any other headers your API requires
                     },
                 }
@@ -131,36 +152,36 @@ export default function Dashboard({ auth }) {
 
     const handleConfirmEdit = async () => {
         // Send an API request to update the edited menu
-        if (editedMenu) {
-            // Define the API endpoint URL for editing
-            const apiUrl = `/api/edit-model/${editedMenu.id}`;
-            console.log("editedMenu:", editedMenu);
 
-            try {
-                const response = await axios.put(apiUrl, editedMenu, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        // Add any other headers your API requires
-                    },
-                });
+        // Define the API endpoint URL for editing
+        const apiUrl = `/api/edit-menu/${editedMenu.id}`;
+        console.log("editedMenu:", editedMenu);
 
-                if (response.status === 200) {
-                    // Request was successful
-                    console.log("Model edited successfully");
-                    // Handle any response data as needed
+        try {
+            const response = await axios.post(apiUrl, editedMenu, {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    // Add any other headers your API requires
+                },
+            });
 
-                    // Close the edit form
-                    setShowEditForm(false);
-                    setEditedMenu(null);
-                } else {
-                    // Request failed
-                    console.error("Model editing failed");
-                }
-            } catch (error) {
-                console.error("An error occurred:", error);
+            if (response.status === 200) {
+                // Request was successful
+                console.log("Model edited successfully");
+                // Handle any response data as needed
+
+                // Close the edit form
+                setShowEditForm(false);
+                setEditedMenu(null);
+            } else {
+                // Request failed
+                console.error("Model editing failed");
             }
+        } catch (error) {
+            console.error("An error occurred:", error);
         }
     };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -183,47 +204,69 @@ export default function Dashboard({ auth }) {
                                 </h1>
                                 <div className="flex gap-2 justify-center mt-8">
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={1}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 1}
                                         buttonName="All Menu"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={2}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 2}
                                         buttonName="Sushi Roll"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={3}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 3}
                                         buttonName="Sashimi"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={4}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 4}
                                         buttonName="Nigiri"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={5}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 5}
                                         buttonName="Donburi"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={6}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 6}
                                         buttonName="Bento"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={7}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 7}
                                         buttonName="Ramen"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={8}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 8}
                                         buttonName="Teppanyaki"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={9}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 9}
                                         buttonName="Appetizer"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={10}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 10}
                                         buttonName="Dessert"
                                     />
                                     <ButtonType
-                                        //isSelected={isButtonSelected}
+                                        id={11}
+                                        onClick={handleButtonClick}
+                                        isSelected={selectedButton === 11}
                                         buttonName="Drink"
                                     />
                                 </div>
@@ -250,10 +293,17 @@ export default function Dashboard({ auth }) {
                                                 className="bg-white shadow-lg rounded-lg overflow-hidden w-96 p-4"
                                             >
                                                 <h1 className="text-xl font-semibold">
+                                                    id {menu.id}
+                                                </h1>
+                                                <h1 className="text-xl font-semibold">
                                                     {menu.name_menu}
                                                 </h1>
                                                 <img
-                                                    src={`/images/menus/${menu.img_menu}`}
+                                                    src={`storage/images/menus/${menu.img_menu}`}
+                                                    onError={(e) => {
+                                                        e.target.src =
+                                                            "storage/images/menus/DEFAULT_MENU.webp";
+                                                    }}
                                                     alt=""
                                                 />
                                                 <p className="text-gray-600">
@@ -288,6 +338,7 @@ export default function Dashboard({ auth }) {
                                     ) : (
                                         <p>Menu is Empty</p>
                                     )}
+                                    {/* //delete menu */}
                                     {showConfirmation && (
                                         <div className="fixed inset-0 flex items-center justify-center z-50">
                                             <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
@@ -331,7 +382,11 @@ export default function Dashboard({ auth }) {
                                                     Edit Menu:{" "}
                                                     {editedMenu.name_menu}
                                                 </p>
-                                                <form>
+                                                <form
+                                                    onSubmit={(e) => {
+                                                        e.preventDefault();
+                                                    }}
+                                                >
                                                     <div className="mb-3">
                                                         <input
                                                             type="text"
@@ -359,9 +414,11 @@ export default function Dashboard({ auth }) {
                                                             onChange={(e) =>
                                                                 setEditedMenu({
                                                                     ...editedMenu,
-                                                                    price: e
-                                                                        .target
-                                                                        .value,
+                                                                    price: parseInt(
+                                                                        e.target
+                                                                            .value,
+                                                                        10
+                                                                    ),
                                                                 })
                                                             }
                                                             placeholder="New Price"
@@ -451,7 +508,12 @@ export default function Dashboard({ auth }) {
                                                 <p className="text-xl font-semibold mb-4">
                                                     Create New Menu Item
                                                 </p>
-                                                <form>
+                                                <form
+                                                    onSubmit={(e) => {
+                                                        //e.preventDefault();
+                                                        handleCreate();
+                                                    }}
+                                                >
                                                     <div className="mb-3">
                                                         <input
                                                             type="text"
@@ -474,14 +536,16 @@ export default function Dashboard({ auth }) {
                                                         <input
                                                             type="number"
                                                             value={
-                                                                newMenu.menu_price
+                                                                newMenu.price
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_price:
+                                                                    price: parseInt(
                                                                         e.target
                                                                             .value,
+                                                                        10
+                                                                    ),
                                                                 })
                                                             }
                                                             placeholder="Price"
@@ -491,12 +555,12 @@ export default function Dashboard({ auth }) {
                                                     <div className="mb-3">
                                                         <textarea
                                                             value={
-                                                                newMenu.menu_desc
+                                                                newMenu.desc_menu
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_desc:
+                                                                    desc_menu:
                                                                         e.target
                                                                             .value,
                                                                 })
@@ -511,7 +575,7 @@ export default function Dashboard({ auth }) {
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_image:
+                                                                    img_menu:
                                                                         e.target
                                                                             .files[0],
                                                                 })
@@ -523,12 +587,12 @@ export default function Dashboard({ auth }) {
                                                         <input
                                                             type="text"
                                                             value={
-                                                                newMenu.menu_type
+                                                                newMenu.type_menu
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_type:
+                                                                    type_menu:
                                                                         e.target
                                                                             .value,
                                                                 })
@@ -540,9 +604,7 @@ export default function Dashboard({ auth }) {
                                                     <div className="mb-4">
                                                         <button
                                                             className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-                                                            onClick={
-                                                                handleCreate
-                                                            }
+                                                            type="submit"
                                                         >
                                                             Create
                                                         </button>
