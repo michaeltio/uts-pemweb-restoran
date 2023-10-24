@@ -66,19 +66,24 @@ class MenuController extends Controller
             $menu->name_menu = $request->input('name_menu');
             $menu->price = $request->input('price');
             $menu->desc_menu = $request->input('desc_menu');
-            // $menu->img_menu = $request->input('img_menu');
+            
+            if ($request->hasFile('img_menu')) {
+                $file = $request->file('img_menu');
+                $originalFilename = $file->getClientOriginalName(); // Get the original filename
+                $destinationPath = public_path('public/images/menus'); // Change the path to 'public'
+                $file->storeAs('public/images/menus', $originalFilename);
+                $menu->img_menu = $originalFilename;
+            }
+
+
             $menu->type_menu = $request->input('type_menu');
-            // $menu->name_menu = "testing";
-            // $menu->price = 50000;
-            // $menu->desc_menu = "ini sushi indomie";
-            //$menu->img_menu = $request->img_menu;
-            //$menu->type_menu = "tapi jenisnya pizza";
+
 
             // Save the changes
             $menu->save();
 
             // You can return a success response, if needed
-            return response()->json(['message' => $request->input('name_menu')]);
+            return response()->json(['message' => $menu->img_menu]);
         } catch (\Exception $e) {
             // Handle any exceptions or errors
             return response()->json(['error' => $e], 500);

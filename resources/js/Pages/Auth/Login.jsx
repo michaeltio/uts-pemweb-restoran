@@ -35,7 +35,7 @@ export default function Login({ status, canResetPassword }) {
         if (captchaInput === captcha) {
             post(route("login"));
         } else {
-            console.log("Captcha is incorrect. Please try again.");
+            //console.log("Captcha is incorrect. Please try again.");
             setCaptchaIncorrect(true);
             setTimeout(() => {
                 setCaptchaIncorrect(false);
