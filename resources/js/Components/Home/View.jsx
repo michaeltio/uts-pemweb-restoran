@@ -1,178 +1,59 @@
 import React from "react";
+import ViewItem from "./ViewItem";
 
 function View() {
     return (
         <section className="text-black-900 body-font mx-16">
             <div className="container flex justify-center px-5 py-24 mx-auto">
                 <div className="flex flex-wrap justify-center  -m-4">
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/200x200"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Alper Kamu
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/201x201"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Holden Caulfield
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/202x202"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Atticus Finch
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/203x203"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Henry Letham
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/200x200"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Alper Kamu
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/201x201"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Holden Caulfield
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/202x202"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Atticus Finch
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/203x203"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Henry Letham
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/200x200"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Alper Kamu
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/201x201"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Holden Caulfield
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/202x202"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Atticus Finch
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="zoom-in" className="p-4 lg:w-1/4 md:w-1/2">
-                        <div className="h-full flex flex-col items-center text-center">
-                            <img
-                                alt="team"
-                                className="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-2"
-                                src="https://dummyimage.com/203x203"
-                            />
-                            <div className="w-full">
-                                <h2 className="title-font font-medium text-lg">
-                                    Henry Letham
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
+                    <ViewItem
+                        source="storage/images/menus/AGEDASHI-TOFU.webp"
+                        name="Agedashi Tofu"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/SALMON-KANI-MAYO-ROLL.webp"
+                        name="Salmon Kani Mayo Roll"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/BLUE-OCEAN-MOJITO-1.webp"
+                        name="Blue Ocean Mojito"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/TAMAGO-SUSHI.webp"
+                        name="Tamogo Sushi"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/KATSU-ROLL.webp"
+                        name="Katsu Roll"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/DORY-KATSU-DRY-RAMEN.webp"
+                        name="Dory Katsu Dry Ramen"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/SAPPORO-ROLL.webp"
+                        name="Sapporo Roll"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/WAKAME-SALAD.webp"
+                        name="Wakame Salad"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/AGEDASHI-TOFU.webp"
+                        name="Agedashi Tofu"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/TORI-KARAAGE-RAMEN.webp"
+                        name="Toori Kaarage Ramen"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/SESAME-SALAD.webp"
+                        name="Sesame Salad"
+                    />
+                    <ViewItem
+                        source="storage/images/menus/TUNA-TARTAR-ROLL.webp"
+                        name="Tuna Tartar Roll"
+                    />
                 </div>
             </div>
             <div

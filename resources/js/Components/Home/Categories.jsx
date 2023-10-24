@@ -9,17 +9,6 @@ import "../../../css/categories.css";
 
 import { Navigation, Pagination } from "swiper/modules";
 
-import Categories1 from "../../../../public/images/assets/categories-1.png";
-import Categories2 from "../../../../public/images/assets/categories-2.png";
-import Categories3 from "../../../../public/images/assets/categories-3.png";
-import Categories4 from "../../../../public/images/assets/categories-4.png";
-import Categories5 from "../../../../public/images/assets/categories-5.png";
-import Categories6 from "../../../../public/images/assets/categories-6.png";
-import Categories7 from "../../../../public/images/assets/categories-6.png";
-import Categories8 from "../../../../public/images/assets/categories-6.png";
-import Categories9 from "../../../../public/images/assets/categories-6.png";
-import Categories10 from "../../../../public/images/assets/categories-6.png";
-
 export default function Categories() {
     return (
         <div className="w-full h-full">
@@ -69,45 +58,81 @@ export default function Categories() {
                     className="mySwiper"
                 >
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories1} alt="1" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/WAKAME-SALAD.webp"
+                            alt="1"
+                        />
                         <p className="pb-12">Appetizer</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories2} alt="2" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/CHICKEN-YAKINIKU-BENTO.webp"
+                            alt="2"
+                        />
                         <p className="pb-12">Bento</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories3} alt="3" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/MILK-RASPBERRY-PANNA-COTTA.webp"
+                            alt="3"
+                        />
                         <p className="pb-12">Dessert</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories4} alt="4" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/GYU-TOJI-DONBURI.webp"
+                            alt="4"
+                        />
                         <p className="pb-12">Donburi</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories5} alt="5" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/BLUE-OCEAN-MOJITO-1.webp"
+                            alt="5"
+                        />
                         <p className="pb-12">Drinks</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories6} alt="6" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/TOBIKO-SUSHI.webp"
+                            alt="6"
+                        />
                         <p className="pb-12">Nigiri</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories7} alt="7" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/SPICY-RAMEN.webp"
+                            alt="7"
+                        />
                         <p className="pb-12">Ramen</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories8} alt="8" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/SASHIMI_SET.webp"
+                            alt="8"
+                        />
                         <p className="pb-12">Sashimi</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
-                        <img className="w-1/2 p-6" src={Categories9} alt="9" />
+                        <img
+                            className="w-1/2 p-6"
+                            src="storage/images/menus/UNAGI_DRAGON-ROLL.webp"
+                            alt="9"
+                        />
                         <p className="pb-12">Sushi Roll</p>
                     </SwiperSlide>
                     <SwiperSlide className="flex flex-col">
                         <img
                             className="w-1/2 p-6"
-                            src={Categories10}
+                            src="storage/images/menus/SALMON-TEPPANYAKI.webp"
                             alt="10"
                         />
                         <p className="pb-12">Teppanyaki</p>

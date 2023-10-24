@@ -2,6 +2,7 @@ import React from "react";
 import Telephone from "../../../../public/images/assets/telephone.png";
 import Location from "../../../../public/images/assets/location.png";
 import Email from "../../../../public/images/assets/email.png";
+import { Link } from "@inertiajs/react";
 
 export default function Footer() {
     return (
@@ -32,6 +33,7 @@ export default function Footer() {
                                     Thank you for choosing us, and we look
                                     forward to serving you again soon
                                     <br />
+                                    <hr />
                                     全てのことの中で、私たちは皆様にご奉仕することに心血を注いでおります。皆様のご満足が、私たちの原動力です。ご選択いただき、誠にありがとうございます。そして、またご利用いただけることを心よりお待ちしております。
                                 </p>
                             </nav>
@@ -50,7 +52,12 @@ export default function Footer() {
                                     data-aos-duration="1500"
                                     className="mb-2"
                                 >
-                                    <a className="hover:text-red-500">Home</a>
+                                    <Link
+                                        href={route("home")}
+                                        className="hover:text-red-500"
+                                    >
+                                        Home
+                                    </Link>
                                 </li>
                                 <li
                                     data-aos="fade-down"
@@ -58,25 +65,31 @@ export default function Footer() {
                                     data-aos-duration="1500"
                                     className="mb-2"
                                 >
-                                    <a className="hover:text-red-500">Menu</a>
+                                    <Link
+                                        href={route("menu")}
+                                        className="hover:text-red-500"
+                                    >
+                                        Menu
+                                    </Link>
                                 </li>
                                 <li
                                     data-aos="fade-down"
                                     data-aos-easing="linear"
                                     data-aos-duration="1500"
                                     className="mb-2"
-                                >
-                                    <a className="hover:text-red-500">
-                                        Third Link
-                                    </a>
-                                </li>
+                                ></li>
                                 <li
                                     data-aos="fade-down"
                                     data-aos-easing="linear"
                                     data-aos-duration="1500"
                                     className="mb-2"
                                 >
-                                    <a className="hover:text-red-500">Cart</a>
+                                    <Link
+                                        href={route("order")}
+                                        className="hover:text-red-500"
+                                    >
+                                        Cart
+                                    </Link>
                                 </li>
                             </nav>
                         </div>
@@ -197,81 +210,6 @@ export default function Footer() {
                                 </li>
                             </nav>
                         </div>
-                    </div>
-                </div>
-                <div className="border-t border-slate-200">
-                    <div className="container px-5 py-8 flex flex-wrap mx-auto items-center">
-                        <div className="flex md:flex-nowrap flex-wrap justify-center items-end md:justify-start">
-                            <div className="relative sm:w-64 w-40 sm:mr-4 mr-2">
-                                <label
-                                    htmlFor="footer-field"
-                                    className="leading-7 text-sm"
-                                >
-                                    Newsletter
-                                </label>
-                                <input
-                                    type="text"
-                                    id="footer-field"
-                                    name="footer-field"
-                                    className="w-full bg-slate-100 bg-opacity-50 rounded border border-slate-300 focus:ring-2 focus:bg-transparent focus:ring-indigo-200 focus:border-indigo-500 text-base outline-none text-slate-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                    placeholder="Email Address"
-                                />
-                            </div>
-                            <button className="mt-2 inline-flex bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                                Send
-                            </button>
-                            <p className=" text-sm md:ml-6 md:mt-0 mt-2 sm:text-left text-center">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit.
-                                <br className="lg:block hidden" />
-                                Dicta ducimus rem consequatur
-                            </p>
-                        </div>
-                        <span className="inline-flex lg:ml-auto lg:mt-0 mt-6 w-full justify-center md:justify-start md:w-auto">
-                            <a
-                                className="ml-3"
-                                href="https://twitter.com/ClashofClans?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <svg
-                                    fill="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    className="w-5 h-5"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                                </svg>
-                            </a>
-                            <a
-                                className="ml-3"
-                                href="https://www.instagram.com/clashofclans/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    className="w-5 h-5"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <rect
-                                        width="20"
-                                        height="20"
-                                        x="2"
-                                        y="2"
-                                        rx="5"
-                                        ry="5"
-                                    ></rect>
-                                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                                </svg>
-                            </a>
-                        </span>
                     </div>
                 </div>
             </footer>

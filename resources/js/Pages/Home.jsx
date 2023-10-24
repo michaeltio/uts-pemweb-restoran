@@ -18,9 +18,8 @@ export default function Welcome({ auth }) {
         isAdmin = 0;
     }
 
-    //aos
     useEffect(() => {
-        AOS.init(); // Initialize AOS in the useEffect hook
+        AOS.init();
     }, []);
 
     return (
