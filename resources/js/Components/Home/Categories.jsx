@@ -20,7 +20,9 @@ export default function Categories() {
     return (
         <div className='w-full h-full'>
             <div className='mx-auto text-center'>
-                <h2 className="text-black-900 mb-4 lg:mb-8 font-bold text-4xl">
+                <h2
+                   data-aos="zoom-in-up" 
+                className="text-black-900 mb-4 lg:mb-8 font-bold text-4xl">
                     Our Menu
                 </h2>
             </div>

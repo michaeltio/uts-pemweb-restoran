@@ -5,6 +5,10 @@ import Opening from '@/Components/Home/Opening';
 import View from '@/Components/Home/View';
 import Navbar from '@/Layouts/Navbar';
 import { Head } from '@inertiajs/react';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
+
 
 export default function Welcome({ auth }) {
 
@@ -15,6 +19,11 @@ export default function Welcome({ auth }) {
       } else {
         isAdmin = 0;
       }
+
+      //aos
+      useEffect(() => {
+        AOS.init(); // Initialize AOS in the useEffect hook
+      }, []); 
 
     return (
         <>
