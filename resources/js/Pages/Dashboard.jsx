@@ -299,7 +299,7 @@ export default function Dashboard({ auth }) {
                                                     {menu.name_menu}
                                                 </h1>
                                                 <img
-                                                    src={`/images/menus/${menu.img_menu}`}
+                                                    src={`storage/images/menus/${menu.img_menu}`}
                                                     onError={(e) => {
                                                         e.target.src =
                                                             "/images/menus/DEFAULT_MENU.webp";
