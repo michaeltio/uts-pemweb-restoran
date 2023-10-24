@@ -27,3 +27,5 @@ Route::put('/edit-menu/{id}', [MenuController::class, 'edit']);
 Route::post('/create-menu', [MenuController::class]);
 
 Route::get('/orders', [OrderController::class, 'index']);
+
+Route::put('/updatequantity', [OrderController::class, 'update']);

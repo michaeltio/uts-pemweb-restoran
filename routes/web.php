@@ -27,7 +27,7 @@ Route::get('/', function () {
 //ini untuk test makanan dashboard menu
 Route::get('/home', function () {
     return Inertia::render('Home');
-});
+})->name('home');
 
 //crud admin
 Route::get('/admin', function () {

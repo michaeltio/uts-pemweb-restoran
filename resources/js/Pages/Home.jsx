@@ -18,18 +18,14 @@ export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Sushi King" />
-            <div>
+            <div className="bg-white">
                 <Navbar loggedIn={auth.user} isAdmin={isAdmin} />
 
                 <Opening />
 
-                <div className="-mt-20">
-                    <Greetings />
-                </div>
+                <Greetings />
 
-                <div className="mb-24 mx-56 h-56 2xl:mx-20 xl:mx-20 lg:mx-20 md:mx-20 sm:mx-20">
-                    <Categories />
-                </div>
+                <Categories />
 
                 <View />
 

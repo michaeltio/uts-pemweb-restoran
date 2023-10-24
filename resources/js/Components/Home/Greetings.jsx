@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Greetings() {
     return (
-        <section className="body-font text-black-900 mx-14">
+        <section className="-mt-20 body-font text-black-900 mx-14">
             <div className="container px-5 py-24 mx-auto">
                 <div className="xl:w-3/4 w-full mx-auto text-center">
                     <h2 className="text-red-600 mb-4 font-bold tracking-wider lg:text-2xl text-xl">
