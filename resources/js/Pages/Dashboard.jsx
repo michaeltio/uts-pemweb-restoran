@@ -26,8 +26,9 @@ export default function Dashboard({ auth }) {
                 console.log(error);
             }
         };
+        if (fetchData.length) return;
         fetchData();
-    }, []);
+    }, [menus]);
 
     // useEffect(() => {
     //     if (selectedButton === 1) {
