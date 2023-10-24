@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Picture from "../../../../public/storage/images/menus/AGEDASHI-TOFU.webp";
+import axios from "axios";
 
 export default function Item({ menus }) {
     const [showInfo, setShowInfo] = useState(false);
@@ -9,7 +10,7 @@ export default function Item({ menus }) {
         menuPrice: 0,
     });
 
-    const handleMenuClick = (menuName, menuDesc, menuPrice) => {
+    const handleMenuClick = (menuName, menuDesc, menuPrice, event) => {
         setShowInfo(true);
         setSelectedMenu({
             menuName: menuName,
@@ -17,9 +18,35 @@ export default function Item({ menus }) {
             menuPrice: menuPrice,
         });
     };
-    const handleCloseClick = () => {
-        setShowInfo(true);
+
+    const handleCart = async (e) => {
+        e.stopPropagation();
+
+        const apiUrl = "/api/order";
+        const formData = new FormData();
+        formData.append("menuId", menuId);
+
+        try {
+            const response = await axios.post(apiUrl, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            if (response.status === 201) {
+                // Order created successfully
+                console.log("Order created successfully");
+                // You can also update the state or take other actions
+            } else {
+                // Creation failed
+                console.error("Failed Response");
+            }
+        } catch (error) {
+            // Handle network errors
+            console.error("An error occurred:", error);
+        }
     };
+
     return (
         <>
             {menus.map((menu, index) => (
@@ -70,7 +97,10 @@ export default function Item({ menus }) {
                                             d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                                         />
                                     </svg>
-                                    <button className="text-xs">
+                                    <button
+                                        className="text-xs"
+                                        onClick={() => handleCart(menu.id)}
+                                    >
                                         Add to cart
                                     </button>
                                 </div>
@@ -86,7 +116,7 @@ export default function Item({ menus }) {
                         <div className="relative bg-white rounded-lg shadow">
                             <button
                                 type="button"
-                                className="absolute top-3 right-2.5 text-gray-400 bg-red-500 hover:bg-red-500 hover:text-gray-50 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                                className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-red-500 hover:text-gray-50 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
                                 onClick={() => setShowInfo(false)}
                             >
                                 <svg
@@ -129,11 +159,14 @@ export default function Item({ menus }) {
                                         href="#_"
                                         className="relative inline-block text-lg group"
                                     >
-                                        <button className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+                                        <button
+                                            className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white"
+                                            onClick={() => setShowInfo(false)}
+                                        >
                                             <span className="absolute inset-0 w-full h-full px-4 py-2 rounded-lg bg-gray-50"></span>
                                             <span className="absolute left-0 w-44 h-44 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
                                             <span className="relative">
-                                                Add to Cart
+                                                Close
                                             </span>
                                         </button>
                                         <span

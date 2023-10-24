@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function addToCart($userId, $menuId)
+    public function addToCart(Request $request)
     {
-        return response()->json(['message' => 'Add To Cart Sucessfully']);
+        $menuId = $request->input('menuId');
+
+        // Process the menuId, for example, save it to the database or perform other actions
+
+        // Return a response, e.g., JSON response
+        return response()->json(['message' => 'Order received successfully'], 201);
     }
 }
