@@ -302,7 +302,7 @@ export default function Dashboard({ auth }) {
                                                     src={`storage/images/menus/${menu.img_menu}`}
                                                     onError={(e) => {
                                                         e.target.src =
-                                                            "/images/menus/DEFAULT_MENU.webp";
+                                                            "storage/images/menus/DEFAULT_MENU.webp";
                                                     }}
                                                     alt=""
                                                 />
@@ -505,7 +505,8 @@ export default function Dashboard({ auth }) {
                                                     Create New Menu Item
                                                 </p>
                                                 <form
-                                                    onSubmit={(e) => {                                                      
+                                                    onSubmit={(e) => {     
+                                                        //e.preventDefault();                                                 
                                                         handleCreate();
                                                     }}
                                                 >
