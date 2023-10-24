@@ -69,7 +69,7 @@ export default function Dashboard({ auth }) {
 
             if (response.status === 200) {
                 // Request was successful
-                console.log("Model deleted successfully");
+                //console.log("Model deleted successfully");
                 // Handle any response data as needed
 
                 // Close the confirmation dialog
@@ -126,7 +126,7 @@ export default function Dashboard({ auth }) {
 
             if (response.status === 201) {
                 // Item created successfully
-                console.log("Menu item created successfully");
+                //console.log("Menu item created successfully");
                 // You can also update the state with the newly created item
                 // Close the create form
                 setShowCreateForm(false);
@@ -155,19 +155,31 @@ export default function Dashboard({ auth }) {
 
         // Define the API endpoint URL for editing
         const apiUrl = `/api/edit-menu/${editedMenu.id}`;
-        console.log("editedMenu:", editedMenu);
+        //console.log("editedMenu:", editedMenu);
 
         try {
-            const response = await axios.post(apiUrl, editedMenu, {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    // Add any other headers your API requires
+            console.log(editedMenu);
+            const response = await axios.post(
+                apiUrl,
+                {
+                    name_menu: editedMenu.name_menu,
+                    price: editedMenu.price,
+                    desc_menu: editedMenu.desc_menu,
+                    img_menu: editedMenu.img_menu,
+                    type_menu: editedMenu.type_menu,
                 },
-            });
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        //"Content-Type": "application/x-www-form-urlencoded",
+                        // Add any other headers your API requires
+                    },
+                }
+            );
 
             if (response.status === 200) {
                 // Request was successful
-                console.log("Model edited successfully");
+                console.log(editedMenu.img_menu);
                 // Handle any response data as needed
 
                 // Close the edit form
@@ -203,74 +215,7 @@ export default function Dashboard({ auth }) {
                                 <h1 className="text-3xl text-center mt-2">
                                     Admin Page
                                 </h1>
-                                <div className="flex gap-2 justify-center mt-8">
-                                    <ButtonType
-                                        id={1}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 1}
-                                        buttonName="All Menu"
-                                    />
-                                    <ButtonType
-                                        id={2}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 2}
-                                        buttonName="Sushi Roll"
-                                    />
-                                    <ButtonType
-                                        id={3}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 3}
-                                        buttonName="Sashimi"
-                                    />
-                                    <ButtonType
-                                        id={4}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 4}
-                                        buttonName="Nigiri"
-                                    />
-                                    <ButtonType
-                                        id={5}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 5}
-                                        buttonName="Donburi"
-                                    />
-                                    <ButtonType
-                                        id={6}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 6}
-                                        buttonName="Bento"
-                                    />
-                                    <ButtonType
-                                        id={7}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 7}
-                                        buttonName="Ramen"
-                                    />
-                                    <ButtonType
-                                        id={8}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 8}
-                                        buttonName="Teppanyaki"
-                                    />
-                                    <ButtonType
-                                        id={9}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 9}
-                                        buttonName="Appetizer"
-                                    />
-                                    <ButtonType
-                                        id={10}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 10}
-                                        buttonName="Dessert"
-                                    />
-                                    <ButtonType
-                                        id={11}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 11}
-                                        buttonName="Drink"
-                                    />
-                                </div>
+
                                 <div className="text-center">
                                     <h1 className="text-2xl mt-4">
                                         Tabel Menu
@@ -447,9 +392,12 @@ export default function Dashboard({ auth }) {
                                                         <input
                                                             type="file"
                                                             onChange={(e) => {
-                                                                const file =
-                                                                    e.target
-                                                                        .files[0];
+                                                                setEditedMenu({
+                                                                    ...editedMenu,
+                                                                    img_menu:
+                                                                        e.target
+                                                                            .files[0],
+                                                                });
                                                                 // Handle the selected file (e.g., upload it to the server)
                                                             }}
                                                             className="w-full p-2 border rounded"
@@ -511,7 +459,7 @@ export default function Dashboard({ auth }) {
                                                 </p>
                                                 <form
                                                     onSubmit={(e) => {
-                                                        //e.preventDefault();
+                                                        e.preventDefault();
                                                         handleCreate();
                                                     }}
                                                 >
