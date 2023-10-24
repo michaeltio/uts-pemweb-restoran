@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Categories from "@/Components/Home/Categories";
 import Footer from "@/Components/Home/Footer";
 import Greetings from "@/Components/Home/Greetings";
@@ -7,7 +8,7 @@ import Navbar from "@/Layouts/Navbar";
 import { Head } from "@inertiajs/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import Luxy from "luxy.js";
 
 export default function Welcome({ auth }) {
     let isAdmin = 0;
@@ -20,15 +21,17 @@ export default function Welcome({ auth }) {
 
     useEffect(() => {
         AOS.init();
+        Luxy.init();
     }, []);
 
     return (
         <>
             <Head title="Sushi King" />
-            <div className="bg-white">
-                <Navbar loggedIn={auth.user} isAdmin={isAdmin} />
-
-                <Opening />
+            <Navbar loggedIn={auth.user} isAdmin={isAdmin} />
+            <div id="luxy" className="bg-white">
+                <div className="luxy-el" data-speed-y="10">
+                    <Opening />
+                </div>
 
                 <Greetings />
 

@@ -4,25 +4,12 @@ import Banner2 from "../../../../public/images/assets/banner2.png";
 import Leaf from "../../../../public/images/assets/leaf.png";
 import SushiDecor from "../../../../public/images/assets/sushi-decor.png";
 import "../../../css/app.css";
-import { useEffect } from "react";
-import rolly from "rolly.js";
 
 export default function Opening() {
-    useEffect(() => {
-        const r = rolly({
-            view: document.querySelector(".opening"),
-            native: false,
-        });
-        r.init();
-    }, []);
-
     return (
         <div className="opening flex items-center ml-12 mt-20 mb-20 2xl:mb-52 2xl:ml-28 xl:mb-36 xl:ml-20 lg:mb-28 lg:ml-20 md:ml-20 sm:ml-12">
-            {/* Content on the left */}
             <div className="flex-1 relative">
                 <img
-                    data-scene
-                    data-speed="1"
                     className="absolute hidden lg:block top-0 left-full z-0 w-10 opacity-80"
                     src={Leaf}
                     alt="leaf"
