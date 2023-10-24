@@ -29,21 +29,21 @@ export default function Dashboard({ auth }) {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        if (selectedButton === 1) {
-            setContent(menus);
-        } else if (selectedButton === 2) {
-            setContent(menus.filter((item) => item == 2));
-        } else if (selectedButton === 3) {
-            setContent(menus.filter((item) => item == 3));
-        } else if (selectedButton === 4) {
-            setContent(menus.filter((item) => item == 4));
-        } else if (selectedButton === 5) {
-            setContent(menus.filter((item) => item == 5));
-        } else if (selectedButton === 6) {
-            setContent(menus.filter((item) => item == 6));
-        }
-    }, [selectedButton]);
+    // useEffect(() => {
+    //     if (selectedButton === 1) {
+    //         setContent(menus);
+    //     } else if (selectedButton === 2) {
+    //         setContent(menus.filter((item) => item == 2));
+    //     } else if (selectedButton === 3) {
+    //         setContent(menus.filter((item) => item == 3));
+    //     } else if (selectedButton === 4) {
+    //         setContent(menus.filter((item) => item == 4));
+    //     } else if (selectedButton === 5) {
+    //         setContent(menus.filter((item) => item == 5));
+    //     } else if (selectedButton === 6) {
+    //         setContent(menus.filter((item) => item == 6));
+    //     }
+    // }, [selectedButton]);
 
     //untuk delete
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -89,28 +89,35 @@ export default function Dashboard({ auth }) {
     //create new menu
     const initialNewMenuState = {
         name_menu: "",
-        menu_price: 0,
-        menu_desc: "",
-        menu_image: null, // Use null or an initial image value
-        menu_type: "",
+        price: 0,
+        desc_menu: "",
+        img_menu: null,
+        type_menu: "",
     };
 
+    //ini form add nya
     const [newMenu, setNewMenu] = useState(initialNewMenuState);
+    //ini untuk on off pop up nya
     const [showCreateForm, setShowCreateForm] = useState(false);
 
     const handleCreate = async () => {
         // Define the API endpoint URL for creating a new menu item
         const apiUrl = "/api/create-menu"; // Replace with your actual API endpoint
 
+        console.log(typeof newMenu.name_menu);
+        console.log(typeof newMenu.desc_menu);
+        console.log(typeof newMenu.img_menu);
+        console.log("desc price " + typeof newMenu.price);
+        console.log(typeof newMenu.type_menu);
         try {
             const response = await axios.post(
                 apiUrl,
                 {
                     name_menu: newMenu.name_menu,
-                    price: newMenu.menu_price,
-                    desc_menu: newMenu.menu_desc,
-                    img_menu: newMenu.menu_image,
-                    type_menu: newMenu.menu_type,
+                    price: newMenu.price,
+                    desc_menu: newMenu.desc_menu,
+                    img_menu: newMenu.img_menu,
+                    type_menu: newMenu.type_menu,
                 },
                 {
                     headers: {
@@ -296,6 +303,10 @@ export default function Dashboard({ auth }) {
                                                 </h1>
                                                 <img
                                                     src={`/images/menus/${menu.img_menu}`}
+                                                    onError={(e) => {
+                                                        e.target.src =
+                                                            "/images/menus/DEFAULT_MENU.webp";
+                                                    }}
                                                     alt=""
                                                 />
                                                 <p className="text-gray-600">
@@ -494,7 +505,12 @@ export default function Dashboard({ auth }) {
                                                 <p className="text-xl font-semibold mb-4">
                                                     Create New Menu Item
                                                 </p>
-                                                <form>
+                                                <form
+                                                    onSubmit={(e) => {
+                                                        e.preventDefault(); // Prevent the default form submission behavior
+                                                        handleCreate();
+                                                    }}
+                                                >
                                                     <div className="mb-3">
                                                         <input
                                                             type="text"
@@ -517,14 +533,16 @@ export default function Dashboard({ auth }) {
                                                         <input
                                                             type="number"
                                                             value={
-                                                                newMenu.menu_price
+                                                                newMenu.price
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_price:
+                                                                    price: parseInt(
                                                                         e.target
                                                                             .value,
+                                                                        10
+                                                                    ),
                                                                 })
                                                             }
                                                             placeholder="Price"
@@ -534,12 +552,12 @@ export default function Dashboard({ auth }) {
                                                     <div className="mb-3">
                                                         <textarea
                                                             value={
-                                                                newMenu.menu_desc
+                                                                newMenu.desc_menu
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_desc:
+                                                                    desc_menu:
                                                                         e.target
                                                                             .value,
                                                                 })
@@ -554,7 +572,7 @@ export default function Dashboard({ auth }) {
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_image:
+                                                                    img_menu:
                                                                         e.target
                                                                             .files[0],
                                                                 })
@@ -566,12 +584,12 @@ export default function Dashboard({ auth }) {
                                                         <input
                                                             type="text"
                                                             value={
-                                                                newMenu.menu_type
+                                                                newMenu.type_menu
                                                             }
                                                             onChange={(e) =>
                                                                 setNewMenu({
                                                                     ...newMenu,
-                                                                    menu_type:
+                                                                    type_menu:
                                                                         e.target
                                                                             .value,
                                                                 })

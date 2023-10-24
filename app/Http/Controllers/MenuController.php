@@ -17,17 +17,17 @@ class MenuController extends Controller
     {
         $request->validate([
             'name_menu' => 'required|string',
-            'menu_price' => 'required|numeric',
-            'menu_desc' => 'string',
-            //'menu_image' => 'file|image|max:2048', // Adjust image validation rules as needed
-            'menu_type' => 'string',
+            'price' => 'required|numeric',
+            'desc_menu' => 'string',
+            'img_menu' => 'file|image|max:2048', // Adjust image validation rules as needed
+            'type_menu' => 'string',
         ]);
 
         $menu = new Menu;
         $menu->name_menu = $request->input('name_menu');
-        $menu->menu_price = $request->input('menu_price');
-        $menu->menu_desc = $request->input('menu_desc');
-        $menu->menu_type = $request->input('menu_type');
+        $menu->price = $request->input('price');
+        $menu->desc_menu = $request->input('desc_menu');
+        $menu->type_menu = $request->input('type_menu');
 
         //Handle menu_image upload
         if ($request->hasFile('menu_image')) {
@@ -58,11 +58,11 @@ class MenuController extends Controller
                 return response()->json(['error' => 'Menu not found'], 404);
             }
             // Update the menu item's attributes based on the request data
-            //$menu->name_menu = $request->input('name_menu');
-            // $menu->price = $request->input('menu_price');
-            // $menu->desc_menu = $request->input('menu_desc');
-            // $menu->img_menu = $request->input('menu_image');
-            // $menu->type_menu = $request->input('menu_type');
+            $menu->name_menu = $request->input('name_menu');
+            $menu->price = $request->input('price');
+            $menu->desc_menu = $request->input('desc_menu');
+            $menu->img_menu = $request->input('img_menu');
+            $menu->type_menu = $request->input('type_menu');
 
             // Save the changes
             $menu->save();
