@@ -28,7 +28,7 @@ export default function Dashboard({ auth }) {
         };
         if (fetchData.length) return;
         fetchData();
-    }, [menus]);
+    }, []);
 
     // useEffect(() => {
     //     if (selectedButton === 1) {
@@ -152,37 +152,36 @@ export default function Dashboard({ auth }) {
 
     const handleConfirmEdit = async () => {
         // Send an API request to update the edited menu
-     
-            // Define the API endpoint URL for editing
-            const apiUrl = `/api/edit-model/${editedMenu.id}`;
-            console.log("editedMenu:", editedMenu);
 
-            try {
-                const response = await axios.put(apiUrl, editedMenu, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                        // Add any other headers your API requires
-                    },
-                });
+        // Define the API endpoint URL for editing
+        const apiUrl = `/api/edit-menu/${editedMenu.id}`;
+        console.log("editedMenu:", editedMenu);
 
-                if (response.status === 200) {
-                    // Request was successful
-                    console.log("Model edited successfully");
-                    // Handle any response data as needed
+        try {
+            const response = await axios.post(apiUrl, editedMenu, {
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    // Add any other headers your API requires
+                },
+            });
 
-                    // Close the edit form
-                    setShowEditForm(false);
-                    setEditedMenu(null);
-                } else {
-                    // Request failed
-                    console.error("Model editing failed");
-                }
-            } catch (error) {
-                console.error("An error occurred:", error);
+            if (response.status === 200) {
+                // Request was successful
+                console.log("Model edited successfully");
+                // Handle any response data as needed
+
+                // Close the edit form
+                setShowEditForm(false);
+                setEditedMenu(null);
+            } else {
+                // Request failed
+                console.error("Model editing failed");
             }
-        
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
     };
-    
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -383,9 +382,11 @@ export default function Dashboard({ auth }) {
                                                     Edit Menu:{" "}
                                                     {editedMenu.name_menu}
                                                 </p>
-                                                <form onSubmit={(e)=>{
-                                                    e.preventDefault();
-                                                }}>
+                                                <form
+                                                    onSubmit={(e) => {
+                                                        e.preventDefault();
+                                                    }}
+                                                >
                                                     <div className="mb-3">
                                                         <input
                                                             type="text"
@@ -413,9 +414,11 @@ export default function Dashboard({ auth }) {
                                                             onChange={(e) =>
                                                                 setEditedMenu({
                                                                     ...editedMenu,
-                                                                    price: e
-                                                                        .target
-                                                                        .value,
+                                                                    price: parseInt(
+                                                                        e.target
+                                                                            .value,
+                                                                        10
+                                                                    ),
                                                                 })
                                                             }
                                                             placeholder="New Price"
@@ -506,8 +509,8 @@ export default function Dashboard({ auth }) {
                                                     Create New Menu Item
                                                 </p>
                                                 <form
-                                                    onSubmit={(e) => {     
-                                                        //e.preventDefault();                                                 
+                                                    onSubmit={(e) => {
+                                                        //e.preventDefault();
                                                         handleCreate();
                                                     }}
                                                 >
@@ -601,7 +604,7 @@ export default function Dashboard({ auth }) {
                                                     <div className="mb-4">
                                                         <button
                                                             className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-                                                           type="submit"
+                                                            type="submit"
                                                         >
                                                             Create
                                                         </button>
