@@ -1,25 +1,24 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import '../../../css/categories.css';
+import "../../../css/categories.css";
 
-import { Pagination } from 'swiper/modules';
+import { Pagination } from "swiper/modules";
 
-import Categories1 from '../../../../public/images/assets/categories-1.png';
-import Categories2 from '../../../../public/images/assets/categories-2.png';
-import Categories3 from '../../../../public/images/assets/categories-3.png';
-import Categories4 from '../../../../public/images/assets/categories-4.png';
-import Categories5 from '../../../../public/images/assets/categories-5.png';
-import Categories6 from '../../../../public/images/assets/categories-6.png';
-
+import Categories1 from "../../../../public/images/assets/categories-1.png";
+import Categories2 from "../../../../public/images/assets/categories-2.png";
+import Categories3 from "../../../../public/images/assets/categories-3.png";
+import Categories4 from "../../../../public/images/assets/categories-4.png";
+import Categories5 from "../../../../public/images/assets/categories-5.png";
+import Categories6 from "../../../../public/images/assets/categories-6.png";
 
 export default function Categories() {
     return (
-        <div className='w-full h-full'>
-            <div className='mx-auto text-center'>
+        <div className="w-full h-full">
+            <div className="mx-auto text-center">
                 <h2 className="text-black-900 mb-4 lg:mb-8 font-bold text-4xl">
                     Our Menu
                 </h2>
@@ -68,7 +67,8 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories1} alt='categories-1'
+                        src={Categories1}
+                        alt="categories-1"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -80,7 +80,8 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories2} alt='categories-2'
+                        src={Categories2}
+                        alt="categories-2"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -92,7 +93,8 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories3} alt='categories-3'
+                        src={Categories3}
+                        alt="categories-3"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -104,7 +106,8 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories4} alt='categories-4'
+                        src={Categories4}
+                        alt="categories-4"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -116,7 +119,8 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories5} alt='categories-5'
+                        src={Categories5}
+                        alt="categories-5"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
@@ -128,10 +132,11 @@ export default function Categories() {
                         md:w-4/5 md:mt-2 md:ml-5
                         sm:w-2/3 sm:mt-2 sm:ml-8
                         "
-                        src={Categories6} alt='categories-6'
+                        src={Categories6}
+                        alt="categories-6"
                     />
                 </SwiperSlide>
             </Swiper>
         </div>
     );
-};
+}

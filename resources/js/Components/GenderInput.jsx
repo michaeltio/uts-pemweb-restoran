@@ -1,8 +1,11 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from "react";
 
-export default forwardRef(function GenderInput({ className = '', isFocused = false, value, onChange, ...props }, ref) {
+export default forwardRef(function GenderInput(
+    { className = "", isFocused = false, value, onChange, ...props },
+    ref,
+) {
     const input = ref ? ref : useRef();
-    const [selectedValue, setSelectedValue] = useState(value || ''); // Initialize with the provided value
+    const [selectedValue, setSelectedValue] = useState(value || ""); // Initialize with the provided value
 
     useEffect(() => {
         if (isFocused) {
@@ -20,7 +23,7 @@ export default forwardRef(function GenderInput({ className = '', isFocused = fal
         <select
             {...props}
             className={
-                'border-gray-300 focus-border-indigo-500 focus-ring-indigo-500 rounded-md shadow-sm ' +
+                "border-gray-300 focus-border-indigo-500 focus-ring-indigo-500 rounded-md shadow-sm " +
                 className
             }
             ref={input}

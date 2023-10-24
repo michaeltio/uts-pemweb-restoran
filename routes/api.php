@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,5 @@ Route::get('/menus', [MenuController::class, 'index']);
 Route::delete('/delete-model/{id}', [MenuController::class, 'deleteModel']);
 Route::put('/edit-menu/{id}', [MenuController::class, 'edit']);
 Route::post('/create-menu', [MenuController::class]);
+
+Route::get('/orders', [OrderController::class, 'index']);

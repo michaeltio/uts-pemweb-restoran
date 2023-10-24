@@ -12,11 +12,11 @@ export default function Greetings() {
                         Quality and Freshness: Our Commitmend to Excellence
                     </p>
                     <p className="leading-relaxed text-xs lg:text-sm mx-12 lg:mx-24">
-                        Emphatize your restaurant's dedication to using the 
+                        Emphatize your restaurant's dedication to using the
                         freshest ingredients sustainable sourcing practices.
                     </p>
                 </div>
             </div>
         </section>
     );
-};
+}

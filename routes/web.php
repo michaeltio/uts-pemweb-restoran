@@ -39,11 +39,15 @@ Route::get('/admin', function () {
 //})->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+})->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 Route::get('/404', function () {
     return Inertia::render('404');
 })->name('404');
+
+Route::get('/order', function () {
+    return Inertia::render('Order');
+})->middleware(['auth'])->name('order');
 
 //incoming change ^^
 
