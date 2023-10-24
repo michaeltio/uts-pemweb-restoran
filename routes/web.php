@@ -45,9 +45,14 @@ Route::get('/404', function () {
     return Inertia::render('404');
 })->name('404');
 
+Route::get('/menu', function () {
+    return Inertia::render('Menu');
+})->name('menu');
+
 Route::get('/order', function () {
     return Inertia::render('Order');
 })->middleware(['auth'])->name('order');
+
 
 //incoming change ^^
 
