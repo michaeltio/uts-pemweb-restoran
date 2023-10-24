@@ -121,7 +121,7 @@ export default function Dashboard({ auth }) {
                         "Content-Type": "multipart/form-data",
                         // Add any other headers your API requires
                     },
-                }
+                },
             );
 
             if (response.status === 201) {
@@ -363,7 +363,7 @@ export default function Dashboard({ auth }) {
                                                     className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md m-2"
                                                     onClick={() =>
                                                         setShowConfirmation(
-                                                            false
+                                                            false,
                                                         )
                                                     }
                                                 >
@@ -485,10 +485,10 @@ export default function Dashboard({ auth }) {
                                                             className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
                                                             onClick={() => {
                                                                 setShowEditForm(
-                                                                    false
+                                                                    false,
                                                                 );
                                                                 setEditedMenu(
-                                                                    null
+                                                                    null,
                                                                 );
                                                             }}
                                                         >
@@ -612,10 +612,10 @@ export default function Dashboard({ auth }) {
                                                             className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md"
                                                             onClick={() => {
                                                                 setShowCreateForm(
-                                                                    false
+                                                                    false,
                                                                 );
                                                                 setNewMenu(
-                                                                    initialNewMenuState
+                                                                    initialNewMenuState,
                                                                 ); // Reset the form fields
                                                             }}
                                                         >

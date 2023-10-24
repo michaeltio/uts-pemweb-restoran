@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Greetings() {
     return (
-        <section className="body-font text-black-900 mx-14">
+        <section className="-mt-20 body-font text-black-900 mx-14">
             <div className="container px-5 py-24 mx-auto">
                 <div className="xl:w-3/4 w-full mx-auto text-center">
                     <h2 className="text-red-600 mb-4 font-bold tracking-wider lg:text-2xl text-xl">
@@ -12,11 +12,11 @@ export default function Greetings() {
                         Quality and Freshness: Our Commitmend to Excellence
                     </p>
                     <p className="leading-relaxed text-xs lg:text-sm mx-12 lg:mx-24">
-                        Emphatize your restaurant's dedication to using the 
+                        Emphatize your restaurant's dedication to using the
                         freshest ingredients sustainable sourcing practices.
                     </p>
                 </div>
             </div>
         </section>
     );
-};
+}
