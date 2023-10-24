@@ -7,7 +7,6 @@ import Picture from "../../../public/images/assets/sushi-3.jpg";
 import Item from "@/Components/Menu/Item.jsx";
 
 function Menu({ auth }) {
-    const [showInfo, setShowInfo] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [filteredMenus, setFilteredMenus] = useState([]);
     const [menus, setMenus] = useState([]);
@@ -59,7 +58,6 @@ function Menu({ auth }) {
                     Menu
                 </h1>
             </div>
-
             <section className="mx-14 new-font">
                 <div className="container px-6 py-8 mx-auto">
                     <div className="lg:flex lg:-mx-2">
@@ -154,77 +152,7 @@ function Menu({ auth }) {
                     </div>
                 </div>
             </section>
-
-            {showInfo && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                    <div className="fixed inset-0 bg-black opacity-60"></div>{" "}
-                    <div className="relative p-4">
-                        <div className="relative bg-white rounded-lg shadow">
-                            <button
-                                type="button"
-                                className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-red-500 hover:text-gray-50 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
-                                onClick={() => setShowInfo(false)}
-                            >
-                                <svg
-                                    className="w-3 h-3"
-                                    aria-hidden="true"
-                                    fill="none"
-                                    viewBox="0 0 14 14"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                    />
-                                </svg>
-                                <span className="sr-only">Close modal</span>
-                            </button>
-                            <div className="flex flex-col md:flex-row items-center justify-center px-6 py-8 mx-auto lg:py-0">
-                                <div className="w-full">
-                                    <img
-                                        className="w-full"
-                                        src={Picture}
-                                        alt="drawing"
-                                    />
-                                </div>
-                                <div className="w-full md:px-8 md:max-w-md sm:max-w-sm">
-                                    <div>
-                                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl mb-4">
-                                            Ramen
-                                        </h1>
-                                        <p className="text-sm mb-8">
-                                            Lorem ipsum dolor, sit amet
-                                            consectetur adipisicing elit. Animi,
-                                            illum atque eos doloremque labore
-                                            qui dolorem alias consectetur
-                                            veritatis.
-                                        </p>
-                                        <p className="text-xl mb-4">100$</p>
-                                    </div>
-                                    <a
-                                        href="#_"
-                                        className="relative inline-block text-lg group"
-                                    >
-                                        <button className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
-                                            <span className="absolute inset-0 w-full h-full px-4 py-2 rounded-lg bg-gray-50"></span>
-                                            <span className="absolute left-0 w-44 h-44 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                                            <span className="relative">
-                                                Add to Cart
-                                            </span>
-                                        </button>
-                                        <span
-                                            className="absolute bottom-0 right-0 w-full h-10 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
-                                            data-rounded="rounded-lg"
-                                        ></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
             <Footer />
         </div>
     );
