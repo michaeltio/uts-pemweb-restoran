@@ -43,6 +43,14 @@ function Menu({ auth }) {
             setSelectedCategory(category);
         }
     };
+
+    if (auth.user === null) {
+        auth.user = false;
+    }
+
+    if (auth.user.isAdmin === null) {
+        auth.user.isAdmin = false;
+    }
     return (
         <div className="">
             <Navbar loggedIn={auth.user} isAdmin={auth.user.isAdmin} />
