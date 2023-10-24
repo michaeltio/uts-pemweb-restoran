@@ -26,8 +26,9 @@ Route::get('/menus', [MenuController::class, 'index']);
 Route::post('/create-menu', [MenuController::class, 'store']);
 //delete
 Route::delete('/delete-model/{id}', [MenuController::class, 'deleteModel']);
+
+//edit
 Route::put('/edit-menu/{id}', [MenuController::class, 'edit']);
-Route::post('/create-menu', [MenuController::class]);
 
 Route::get('/orders', [OrderController::class, 'index']);
 

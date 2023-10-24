@@ -203,74 +203,7 @@ export default function Dashboard({ auth }) {
                                 <h1 className="text-3xl text-center mt-2">
                                     Admin Page
                                 </h1>
-                                <div className="flex gap-2 justify-center mt-8">
-                                    <ButtonType
-                                        id={1}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 1}
-                                        buttonName="All Menu"
-                                    />
-                                    <ButtonType
-                                        id={2}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 2}
-                                        buttonName="Sushi Roll"
-                                    />
-                                    <ButtonType
-                                        id={3}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 3}
-                                        buttonName="Sashimi"
-                                    />
-                                    <ButtonType
-                                        id={4}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 4}
-                                        buttonName="Nigiri"
-                                    />
-                                    <ButtonType
-                                        id={5}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 5}
-                                        buttonName="Donburi"
-                                    />
-                                    <ButtonType
-                                        id={6}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 6}
-                                        buttonName="Bento"
-                                    />
-                                    <ButtonType
-                                        id={7}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 7}
-                                        buttonName="Ramen"
-                                    />
-                                    <ButtonType
-                                        id={8}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 8}
-                                        buttonName="Teppanyaki"
-                                    />
-                                    <ButtonType
-                                        id={9}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 9}
-                                        buttonName="Appetizer"
-                                    />
-                                    <ButtonType
-                                        id={10}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 10}
-                                        buttonName="Dessert"
-                                    />
-                                    <ButtonType
-                                        id={11}
-                                        onClick={handleButtonClick}
-                                        isSelected={selectedButton === 11}
-                                        buttonName="Drink"
-                                    />
-                                </div>
+
                                 <div className="text-center">
                                     <h1 className="text-2xl mt-4">
                                         Tabel Menu
@@ -511,7 +444,7 @@ export default function Dashboard({ auth }) {
                                                 </p>
                                                 <form
                                                     onSubmit={(e) => {
-                                                        //e.preventDefault();
+                                                        e.preventDefault();
                                                         handleCreate();
                                                     }}
                                                 >

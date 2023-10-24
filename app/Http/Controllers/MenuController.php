@@ -36,9 +36,9 @@ class MenuController extends Controller
             $originalFilename = $file->getClientOriginalName(); // Get the original filename
             $destinationPath = public_path('public/images/menus'); // Change the path to 'public'
             $file->storeAs('public/images/menus', $originalFilename);
+            $menu->img_menu = $originalFilename;
         }
 
-        $menu->img_menu = $originalFilename;
         $menu->save();
 
         return response()->json(['message' => 'Menu created successfully'], 201);
