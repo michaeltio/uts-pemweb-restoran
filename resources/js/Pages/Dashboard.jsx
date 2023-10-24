@@ -87,6 +87,7 @@ export default function Dashboard({ auth }) {
     };
 
     //create new menu
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const initialNewMenuState = {
         name_menu: "",
         price: 0,
@@ -104,11 +105,6 @@ export default function Dashboard({ auth }) {
         // Define the API endpoint URL for creating a new menu item
         const apiUrl = "/api/create-menu"; // Replace with your actual API endpoint
 
-        console.log(typeof newMenu.name_menu);
-        console.log(typeof newMenu.desc_menu);
-        console.log(typeof newMenu.img_menu);
-        console.log("desc price " + typeof newMenu.price);
-        console.log(typeof newMenu.type_menu);
         try {
             const response = await axios.post(
                 apiUrl,
@@ -121,7 +117,7 @@ export default function Dashboard({ auth }) {
                 },
                 {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                         // Add any other headers your API requires
                     },
                 }
@@ -155,7 +151,7 @@ export default function Dashboard({ auth }) {
 
     const handleConfirmEdit = async () => {
         // Send an API request to update the edited menu
-        if (editedMenu) {
+     
             // Define the API endpoint URL for editing
             const apiUrl = `/api/edit-model/${editedMenu.id}`;
             console.log("editedMenu:", editedMenu);
@@ -163,7 +159,7 @@ export default function Dashboard({ auth }) {
             try {
                 const response = await axios.put(apiUrl, editedMenu, {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                         // Add any other headers your API requires
                     },
                 });
@@ -183,8 +179,9 @@ export default function Dashboard({ auth }) {
             } catch (error) {
                 console.error("An error occurred:", error);
             }
-        }
+        
     };
+    
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -385,7 +382,9 @@ export default function Dashboard({ auth }) {
                                                     Edit Menu:{" "}
                                                     {editedMenu.name_menu}
                                                 </p>
-                                                <form>
+                                                <form onSubmit={(e)=>{
+                                                    e.preventDefault();
+                                                }}>
                                                     <div className="mb-3">
                                                         <input
                                                             type="text"
@@ -506,8 +505,7 @@ export default function Dashboard({ auth }) {
                                                     Create New Menu Item
                                                 </p>
                                                 <form
-                                                    onSubmit={(e) => {
-                                                        e.preventDefault(); // Prevent the default form submission behavior
+                                                    onSubmit={(e) => {                                                      
                                                         handleCreate();
                                                     }}
                                                 >
@@ -601,9 +599,7 @@ export default function Dashboard({ auth }) {
                                                     <div className="mb-4">
                                                         <button
                                                             className="bg-blue-500 text-white px-4 py-2 rounded-md mr-2"
-                                                            onClick={
-                                                                handleCreate
-                                                            }
+                                                           type="submit"
                                                         >
                                                             Create
                                                         </button>

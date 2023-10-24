@@ -30,11 +30,15 @@ class MenuController extends Controller
         $menu->type_menu = $request->input('type_menu');
 
         //Handle menu_image upload
-        if ($request->hasFile('menu_image')) {
-            $imagePath = $request->file('menu_image')->store('menu_images');
-            $menu->menu_image = $imagePath;
+        if ($request->hasFile('img_menu')) {
+            $file = $request->file('img_menu');
+            $originalFilename = $file->getClientOriginalName(); // Get the original filename
+            $destinationPath = public_path('public/images/menus'); // Change the path to 'public'
+            $file->storeAs('public/images/menus', $originalFilename);
+           
         }
 
+        $menu->img_menu = $originalFilename;
         $menu->save();
 
         return response()->json(['message' => 'Menu created successfully'], 201);
@@ -61,7 +65,7 @@ class MenuController extends Controller
             $menu->name_menu = $request->input('name_menu');
             $menu->price = $request->input('price');
             $menu->desc_menu = $request->input('desc_menu');
-            $menu->img_menu = $request->input('img_menu');
+            //$menu->img_menu = $request->input('img_menu');
             $menu->type_menu = $request->input('type_menu');
 
             // Save the changes
