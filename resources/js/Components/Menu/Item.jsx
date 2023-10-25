@@ -8,26 +8,35 @@ export default function Item({ menus }) {
         menuName: "",
         menuDesc: "",
         menuPrice: 0,
+        menuSrc: "",
     });
 
-    const handleMenuClick = (menuName, menuDesc, menuPrice, event) => {
+    //ini untuk cart
+    const [orderMenu, setOrderMenu] = useState({
+        menuName: "",
+        menuPrice: 0,
+    });
+
+    const handleMenuClick = (menuName, menuDesc, menuPrice, menuSrc, event) => {
         setShowInfo(true);
         setSelectedMenu({
             menuName: menuName,
             menuDesc: menuDesc,
             menuPrice: menuPrice,
+            menuSrc: menuSrc,
         });
     };
 
-    const handleCart = async (e) => {
-        e.stopPropagation();
-
+    const handleOrder = async (menuName, menuPrice) => {
         const apiUrl = "/api/order";
-        const formData = new FormData();
-        formData.append("menuId", menuId);
 
+        const formOrder = new FormData();
+        //formOrder.append("user_id", 1);
+        formOrder.append("name_menu", menuName);
+        formOrder.append("price", menuPrice);
+        console.log(menuName, menuPrice);
         try {
-            const response = await axios.post(apiUrl, formData, {
+            const response = await axios.post(apiUrl, formOrder, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -35,16 +44,17 @@ export default function Item({ menus }) {
 
             if (response.status === 201) {
                 // Order created successfully
-                console.log("Order created successfully");
+                console.log(response.data);
                 // You can also update the state or take other actions
             } else {
                 // Creation failed
-                console.error("Failed Response");
+                console.log(response.data);
             }
         } catch (error) {
             // Handle network errors
             console.error("An error occurred:", error);
         }
+        setShowInfo(false);
     };
 
     return (
@@ -56,7 +66,8 @@ export default function Item({ menus }) {
                         handleMenuClick(
                             menu.name_menu,
                             menu.desc_menu,
-                            menu.price
+                            menu.price,
+                            menu.img_menu
                         )
                     }
                     className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300"
@@ -81,29 +92,6 @@ export default function Item({ menus }) {
                                 <p className="text-lg font-bold text-red-500">
                                     Rp {menu.price.toLocaleString("id-ID")}
                                 </p>
-
-                                <div className="flex items-center space-x-1.5 rounded-lg bg-red-500 px-3 py-1.5 text-white duration-100 hover:bg-red-600">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth="1.5"
-                                        stroke="currentColor"
-                                        className="h-4 w-4"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                                        />
-                                    </svg>
-                                    <button
-                                        className="text-xs"
-                                        onClick={() => handleCart(menu.id)}
-                                    >
-                                        Add to cart
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </a>
@@ -126,7 +114,7 @@ export default function Item({ menus }) {
                                     viewBox="0 0 14 14"
                                 >
                                     <path
-                                        stroke-width="2"
+                                        strokeWidth="2"
                                         d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                                     />
                                 </svg>
@@ -136,7 +124,7 @@ export default function Item({ menus }) {
                                 <div className="w-full">
                                     <img
                                         className="w-full"
-                                        src={Picture}
+                                        src={`storage/images/menus/${selectedMenu.menuSrc}`}
                                         alt="drawing"
                                     />
                                 </div>
@@ -155,25 +143,53 @@ export default function Item({ menus }) {
                                             )}
                                         </p>
                                     </div>
-                                    <a
-                                        href="#_"
-                                        className="relative inline-block text-lg group"
-                                    >
-                                        <button
-                                            className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white"
-                                            onClick={() => setShowInfo(false)}
+                                    <div className="flex gap-8">
+                                        <a
+                                            href="#_"
+                                            className="relative inline-block text-lg group"
                                         >
-                                            <span className="absolute inset-0 w-full h-full px-4 py-2 rounded-lg bg-gray-50"></span>
-                                            <span className="absolute left-0 w-44 h-44 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
-                                            <span className="relative">
-                                                Close
-                                            </span>
-                                        </button>
-                                        <span
-                                            className="absolute bottom-0 right-0 w-full h-10 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
-                                            data-rounded="rounded-lg"
-                                        ></span>
-                                    </a>
+                                            <button
+                                                className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white"
+                                                onClick={() =>
+                                                    setShowInfo(false)
+                                                }
+                                            >
+                                                <span className="absolute inset-0 w-full h-full px-4 py-2 rounded-lg bg-gray-50"></span>
+                                                <span className="absolute left-0 w-44 h-44 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+                                                <span className="relative">
+                                                    Close
+                                                </span>
+                                            </button>
+                                            <span
+                                                className="absolute bottom-0 right-0 w-full h-10 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+                                                data-rounded="rounded-lg"
+                                            ></span>
+                                        </a>
+                                        <a
+                                            href="#_"
+                                            className="relative inline-block text-lg group"
+                                        >
+                                            <button
+                                                className="relative z-10 block px-4 py-2 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white"
+                                                onClick={() =>
+                                                    handleOrder(
+                                                        selectedMenu.menuName,
+                                                        selectedMenu.menuPrice
+                                                    )
+                                                }
+                                            >
+                                                <span className="absolute inset-0 w-full h-full px-4 py-2 rounded-lg bg-gray-50 bg-orange-400"></span>
+                                                <span className="absolute left-0 w-44 h-44 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-orange-500 group-hover:-rotate-180 ease"></span>
+                                                <span className="relative">
+                                                    Order
+                                                </span>
+                                            </button>
+                                            <span
+                                                className="absolute bottom-0 right-0 w-full h-10 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+                                                data-rounded="rounded-lg"
+                                            ></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

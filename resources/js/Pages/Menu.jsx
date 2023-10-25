@@ -5,6 +5,7 @@ import Filter from "../Components/Menu/Filter.jsx";
 import "../../css/menu.css";
 import Picture from "../../../public/images/assets/sushi-3.jpg";
 import Item from "@/Components/Menu/Item.jsx";
+import axios from "axios";
 
 function Menu({ auth }) {
     const [selectedCategory, setSelectedCategory] = useState(null);
@@ -152,7 +153,6 @@ function Menu({ auth }) {
                     </div>
                 </div>
             </section>
-            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
             <Footer />
         </div>
     );

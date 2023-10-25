@@ -26,10 +26,15 @@ Route::get('/menus', [MenuController::class, 'index']);
 Route::post('/create-menu', [MenuController::class, 'store']);
 //delete
 Route::delete('/delete-model/{id}', [MenuController::class, 'deleteModel']);
-
 //edit
 Route::post('/edit-menu/{id}', [MenuController::class, 'edit']);
 
+
 Route::post('/order', [OrderController::class, 'addToCart']);
+// Route::middleware('auth:api')->group(function () {
+//     // Your authenticated routes go here
+// });
+//order
+Route::post('/check-out', [OrderController::class, 'checkOut']);
 
 //Route::put('/updatequantity', [OrderController::class, 'update']);
