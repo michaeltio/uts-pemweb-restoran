@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('name_menu');
-            $table->string('price');
+            $table->integer('price');
             $table->string('img_menu');
             $table->timestamps();
         });
