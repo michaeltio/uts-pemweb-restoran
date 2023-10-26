@@ -4,7 +4,6 @@ export default function Item({ orders }) {
     return (
         <>
             {orders.map((menu) => {
-                console.log(menu);
                 return (
                     <div
                         key={menu.id}

@@ -16,13 +16,19 @@ export default function OrderPage({ auth }) {
                     .then((response) => {
                         setOrders(response.data);
                     });
-            } catch (error) {
-                console.log(error.data[1]);
-            }
+            } catch (error) {}
         };
 
         fetchOrders();
     }, [auth.user]);
+
+    useEffect(() => {
+        const calculatedTotalPrice = orders.reduce((total, item) => {
+            return total + item.price;
+        }, 0);
+
+        setTotalPrice(calculatedTotalPrice);
+    }, []);
 
     return (
         <div className="bg-gray-100">
