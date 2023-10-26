@@ -28,7 +28,7 @@ export default function Item({ orders, orderMenus }) {
                         className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
                     >
                         <img
-                            src={`/images/menus/${menu.img_menu}`}
+                            src={`storage/images/menus/${menu.img_menu}`}
                             alt="product-image"
                             className="w-full rounded-lg sm:w-40"
                         />

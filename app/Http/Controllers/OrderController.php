@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Order::all();
+        return response()->json($orders);
+    }
     public function addToCart(Request $request)
     {
         $menuId = $request->input('menuId');
