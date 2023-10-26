@@ -10,8 +10,11 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
 class OrderController extends Controller
 {
-
-    //create new order
+    public function index()
+    {
+        $orders = Order::all();
+        return response()->json($orders);
+    }
     public function addToCart(Request $request)
     {
 

@@ -11,7 +11,7 @@ export default function OrderPage({ auth }) {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get("/api/orders");
+                const response = await axios.get("/api/order");
                 const filteredOrders = response.data.filter(
                     (order) => order.user_id === auth.user.id
                 );

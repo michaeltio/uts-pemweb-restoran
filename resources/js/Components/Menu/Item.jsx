@@ -1,34 +1,33 @@
 import { useEffect, useState } from "react";
-import Picture from "../../../../public/storage/images/menus/AGEDASHI-TOFU.webp";
 import axios from "axios";
+import { Link } from "@inertiajs/react";
 
-export default function Item({ menus }) {
+export default function Item({ loggedIn, menus }) {
+    console.log(loggedIn);
+
     const [showInfo, setShowInfo] = useState(false);
     const [selectedMenu, setSelectedMenu] = useState({
         menuName: "",
         menuDesc: "",
         menuPrice: 0,
-        menuSrc: "",
+        menuImg: "",
     });
 
-    //ini untuk cart
-    const [orderMenu, setOrderMenu] = useState({
-        menuName: "",
-        menuPrice: 0,
-    });
-
-    const handleMenuClick = (menuName, menuDesc, menuPrice, menuSrc, event) => {
+    const handleMenuClick = (menuName, menuDesc, menuPrice, menuImg) => {
         setShowInfo(true);
         setSelectedMenu({
             menuName: menuName,
             menuDesc: menuDesc,
             menuPrice: menuPrice,
-            menuSrc: menuSrc,
+            menuImg: menuImg,
         });
     };
 
-    const handleOrder = async (menuName, menuPrice) => {
+    const handleCart = async (menuId) => {
         const apiUrl = "/api/order";
+
+        // Assuming you have 'user.id' available
+        const userId = loggedIn.id;
 
         const formOrder = new FormData();
         //formOrder.append("user_id", 1);
@@ -72,13 +71,21 @@ export default function Item({ menus }) {
                     }
                     className="rounded-xl bg-white p-3 shadow-lg hover:shadow-xl hover:transform hover:scale-105 duration-300"
                 >
-                    <a href="#">
+                    <div>
                         <div className="relative flex items-end overflow-hidden rounded-xl">
                             <img
                                 onError={(e) => {
                                     e.target.src =
                                         "storage/images/menus/DEFAULT_MENU.webp";
                                 }}
+                                onClick={() =>
+                                    handleMenuClick(
+                                        menu.name_menu,
+                                        menu.desc_menu,
+                                        menu.price,
+                                        menu.img_menu
+                                    )
+                                }
                                 alt=""
                                 src={`storage/images/menus/${menu.img_menu}`}
                             />
@@ -92,9 +99,41 @@ export default function Item({ menus }) {
                                 <p className="text-lg font-bold text-red-500">
                                     Rp {menu.price.toLocaleString("id-ID")}
                                 </p>
+
+                                <div className="flex items-center space-x-1.5 rounded-lg bg-red-500 px-3 py-1.5 text-white duration-100 hover:bg-red-600">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="h-4 w-4"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                                        />
+                                    </svg>
+                                    {!loggedIn ? (
+                                        <Link
+                                            href={route("login")}
+                                            className="text-xs"
+                                        >
+                                            Add to cart
+                                        </Link>
+                                    ) : (
+                                        <button
+                                            className="text-xs"
+                                            onClick={() => handleCart(menu.id)}
+                                        >
+                                            Add to cart
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </article>
             ))}
             {showInfo && (
@@ -124,7 +163,7 @@ export default function Item({ menus }) {
                                 <div className="w-full">
                                     <img
                                         className="w-full"
-                                        src={`storage/images/menus/${selectedMenu.menuSrc}`}
+                                        src={`storage/images/menus/${selectedMenu.menuImg}`}
                                         alt="drawing"
                                     />
                                 </div>

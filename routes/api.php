@@ -29,6 +29,7 @@ Route::delete('/delete-model/{id}', [MenuController::class, 'deleteModel']);
 //edit
 Route::post('/edit-menu/{id}', [MenuController::class, 'edit']);
 
+Route::get('/order', [OrderController::class, 'index']);
 
 Route::post('/order', [OrderController::class, 'addToCart']);
 // Route::middleware('auth:api')->group(function () {
