@@ -72,14 +72,13 @@ function Navbar({ loggedIn, isAdmin }) {
                                     >
                                         Admin Page
                                     </Link>
-                                ) : (
-                                    <Link
-                                        href={route("order")}
-                                        className="mr-10 hover:underline-offset-2"
-                                    >
-                                        Order
-                                    </Link>
-                                )}
+                                ) : null}
+                                <Link
+                                    href={route("order")}
+                                    className="mr-10 hover:underline-offset-2"
+                                >
+                                    Order
+                                </Link>
                                 <Link
                                     href={route("logout")}
                                     method="post"
