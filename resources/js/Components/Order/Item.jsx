@@ -11,6 +11,10 @@ export default function Item({ orders }) {
                     >
                         <img
                             src={`storage/images/menus/${menu.img_menu}`}
+                            onError={(e) => {
+                                e.target.src =
+                                    "storage/images/menus/DEFAULT_MENU.webp";
+                            }}
                             alt="product-image"
                             className="w-full rounded-lg sm:w-40"
                         />

@@ -41,4 +41,15 @@ class OrderController extends Controller
         // Return a response, e.g., JSON response
         return response()->json(['message' => 'Order received successfully'], 201);
     }
+
+    public function clearCart($id)
+    {
+        try {
+            Order::where('user_id', $id)->delete();
+
+            return response()->json(['message' => 'Succesful']);
+        } catch (\Exception $th) {
+            return response()->json(['error' => 'Failed to Delete']);
+        }
+    }
 }

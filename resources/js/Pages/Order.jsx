@@ -30,6 +30,21 @@ export default function OrderPage({ auth }) {
         setTotalPrice(calculatedTotalPrice);
     }, [orders]);
 
+    const handleCheckOut = () => {
+        const userId = auth.user.id; // Replace with the actual user ID
+        axios
+            .delete(`/api/check-out/${userId}`)
+            .then((response) => {
+                console.log("Cart cleared successfully:", response.data);
+                // Perform any additional actions or state updates here
+            })
+            .catch((error) => {
+                console.error("Failed to clear cart:", error);
+                // Handle the error, e.g., display an error message
+            });
+        window.location.reload();
+    };
+
     return (
         <div className="bg-gray-100">
             <Navbar orders={orders} loggedIn={auth.user} />
@@ -67,7 +82,10 @@ export default function OrderPage({ auth }) {
                                 </p>
                             </div>
                         </div>
-                        <button className="mt-6 w-full rounded-md bg-red-500 py-1.5 font-medium text-blue-50 hover:bg-red-600">
+                        <button
+                            className="mt-6 w-full rounded-md bg-red-500 py-1.5 font-medium text-blue-50 hover:bg-red-600"
+                            onClick={handleCheckOut}
+                        >
                             Check out
                         </button>
                     </div>

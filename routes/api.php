@@ -34,4 +34,6 @@ Route::get('/order/{id}', [OrderController::class, 'getAllOrderFromId']);
 
 Route::post('/order', [OrderController::class, 'addToCart']);
 
+Route::delete('/check-out/{id}', [OrderController::class, 'clearCart']);
+
 //Route::put('/updatequantity', [OrderController::class, 'update']);
