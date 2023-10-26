@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../../../../public/images/assets/banner-temp.png";
 import Banner2 from "../../../../public/images/assets/banner2.png";
 import Leaf from "../../../../public/images/assets/leaf.png";
@@ -9,32 +9,42 @@ export default function Opening() {
     return (
         <div className="opening flex items-center ml-12 mt-20 mb-20 2xl:mb-52 2xl:ml-28 xl:mb-36 xl:ml-20 lg:mb-28 lg:ml-20 md:ml-20 sm:ml-12">
             <div className="flex-1 relative">
-                <img
-                    className="absolute hidden lg:block top-0 left-full z-0 w-10 opacity-80"
-                    src={Leaf}
-                    alt="leaf"
-                />
-                <img
-                    className="absolute hidden lg:block top-80 left-1/2 z-0 w-10 opacity-80 rotate-90"
-                    src={Leaf}
-                    alt="leaf"
-                />
-                <img
-                    className="absolute hidden lg:block -top-16 left-64 z-0 w-10 opacity-80 rotate-180"
-                    src={Leaf}
-                    alt="leaf"
-                />
-                <img
-                    className="absolute hidden lg:block top-20 left-3/4 z-0 w-10 opacity-80 rotate-90"
-                    src={SushiDecor}
-                    alt="sushi"
-                />
-                <div className="relative w-full">
+                <div className="luxy-el" data-speed-y="-5">
                     <img
-                        className="absolute -top-56 -left-32 z-0 w-4/5 grayscale opacity-10"
-                        src={Banner2}
-                        alt="banner2"
+                        className="absolute hidden lg:block top-0 left-full z-0 w-10 opacity-80"
+                        src={Leaf}
+                        alt="leaf"
                     />
+                </div>
+                <div className="luxy-el" data-speed-y="-7">
+                    <img
+                        className="absolute hidden lg:block top-80 left-1/2 z-0 w-10 opacity-80 rotate-90"
+                        src={Leaf}
+                        alt="leaf"
+                    />
+                </div>
+                <div className="luxy-el" data-speed-y="-3">
+                    <img
+                        className="absolute hidden lg:block -top-16 left-64 z-0 w-10 opacity-80 rotate-180"
+                        src={Leaf}
+                        alt="leaf"
+                    />
+                </div>
+                <div className="luxy-el" data-speed-y="-1">
+                    <img
+                        className="absolute hidden lg:block top-20 left-3/4 z-0 w-10 opacity-80 rotate-90"
+                        src={SushiDecor}
+                        alt="sushi"
+                    />
+                </div>
+                <div className="luxy-el" data-speed-y="2">
+                    <div className="relative w-full">
+                        <img
+                            className="absolute -top-56 -left-32 z-0 w-4/5 grayscale opacity-10"
+                            src={Banner2}
+                            alt="banner2"
+                        />
+                    </div>
                 </div>
                 <p
                     className="
