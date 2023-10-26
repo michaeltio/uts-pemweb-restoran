@@ -28,7 +28,7 @@ export default function OrderPage({ auth }) {
         }, 0);
 
         setTotalPrice(calculatedTotalPrice);
-    }, []);
+    }, [orders]);
 
     return (
         <div className="bg-gray-100">
