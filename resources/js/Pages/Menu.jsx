@@ -118,7 +118,7 @@ function Menu({ auth }) {
                                 Teppanyaki
                             </a>
                             <a
-                                onClick={() => handleCategoryClick("Drinks")}
+                                onClick={() => handleCategoryClick("Drink")}
                                 className="block font-medium text-gray-500 active:text-blue-600 hover:underline"
                             >
                                 Drinks
@@ -136,7 +136,9 @@ function Menu({ auth }) {
                             </p>
                             <hr className="mt-2 mb-2" />
                             <div className="h-32">
-                                <Filter />
+                                <Filter
+                                    handleCategoryClick={handleCategoryClick}
+                                />
                             </div>
                         </div>
 
@@ -152,7 +154,6 @@ function Menu({ auth }) {
                     </div>
                 </div>
             </section>
-            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
             <Footer />
         </div>
     );

@@ -27,8 +27,8 @@ export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Sushi King" />
-            <Navbar loggedIn={auth.user} isAdmin={isAdmin} />
-            <div id="luxy" className="bg-white">
+            <div id="luxy">
+                <Navbar loggedIn={auth.user} isAdmin={isAdmin} />
                 <div className="luxy-el" data-speed-y="10">
                     <Opening />
                 </div>
