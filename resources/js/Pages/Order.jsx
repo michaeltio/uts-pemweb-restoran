@@ -11,46 +11,18 @@ export default function OrderPage({ auth }) {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`/api/order/${auth.user.id}`);
-                const filteredOrders = response.data.filter(
-                    (order) => order.user_id === auth.user.id
-                );
-                setOrders(filteredOrders);
+                const response = await axios
+                    .get(`/api/order/${auth.user.id}`)
+                    .then((response) => {
+                        setOrders(response.data);
+                    });
             } catch (error) {
-                console.log(error);
+                console.log(error.data[1]);
             }
         };
 
         fetchOrders();
     }, [auth.user]);
-
-    useEffect(() => {
-        const fetchMenus = async () => {
-            try {
-                const response = await axios.get("/api/menus");
-                const menuIds = orders.map((order) => order.menu_id);
-                const filteredMenus = response.data.filter((menu) =>
-                    menuIds.includes(menu.id)
-                );
-                setOrderMenus(filteredMenus);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchMenus();
-    }, [orders]);
-
-    useEffect(() => {
-        const calculatedTotalPrice = orderMenus.reduce((total, item) => {
-            return (
-                total +
-                item.price *
-                    orders.find((order) => order.menu_id === item.id).quantity
-            );
-        }, 0);
-
-        setTotalPrice(calculatedTotalPrice);
-    }, [orderMenus, orders]);
 
     return (
         <div className="bg-gray-100">

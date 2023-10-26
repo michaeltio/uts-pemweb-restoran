@@ -1,27 +1,10 @@
 import React, { useState } from "react";
 
-export default function Item({ orders, orderMenus }) {
+export default function Item({ orders }) {
     return (
         <>
-            {orderMenus.map((menu) => {
-                const orderForMenu = orders.find(
-                    (order) => order.menu_id === menu.id
-                );
-                const initialQuantity = orderForMenu
-                    ? orderForMenu.quantity
-                    : 0;
-                const [quantity, setQuantity] = useState(initialQuantity);
-
-                const handleIncrement = () => {
-                    setQuantity(quantity + 1);
-                };
-
-                const handleDecrement = () => {
-                    if (quantity > 0) {
-                        setQuantity(quantity - 1);
-                    }
-                };
-
+            {orders.map((menu) => {
+                console.log(menu);
                 return (
                     <div
                         key={menu.id}
@@ -42,28 +25,6 @@ export default function Item({ orders, orderMenus }) {
                                 </p>
                             </div>
                             <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                                <div className="flex items-center border-gray-100">
-                                    <span
-                                        className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-red-500 hover:text-red-50"
-                                        onClick={handleDecrement}
-                                    >
-                                        {" "}
-                                        -{" "}
-                                    </span>
-                                    <input
-                                        className="h-8 w-10 border bg-white text-center text-xs outline-none"
-                                        value={quantity}
-                                        min="1"
-                                        readOnly
-                                    />
-                                    <span
-                                        className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-red-500 hover:text-red-50"
-                                        onClick={handleIncrement}
-                                    >
-                                        {" "}
-                                        +{" "}
-                                    </span>
-                                </div>
                                 <div className="flex items-center">
                                     <p className="mr-2 text-xs">
                                         Rp {menu.price.toLocaleString("id-ID")}
