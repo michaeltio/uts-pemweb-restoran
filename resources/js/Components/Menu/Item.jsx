@@ -25,7 +25,7 @@ export default function Item({ loggedIn, menus }) {
 
     const handleCart = async (menuId) => {
         const apiUrl = "/api/order";
-
+        console.log(menuId);
         // Assuming you have 'user.id' available
         const userId = loggedIn.id;
 

@@ -15,7 +15,7 @@ class OrderController extends Controller
     }
     public function addToCart(Request $request)
     {
-        $menuId = $request->input('menuId');
+        
 
         // Process the menuId, for example, save it to the database or perform other actions
 
