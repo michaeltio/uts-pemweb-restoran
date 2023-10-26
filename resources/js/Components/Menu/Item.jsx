@@ -32,8 +32,7 @@ export default function Item({ loggedIn, menus }) {
         try {
             const response = await axios.post(apiUrl, {
                 user_id: userId,
-                menuId: menuId, // Correct the key to menuId
-                quantity: 1,
+                menu_id: menuId, // Correct the key to menuId
             });
 
             if (response.status === 201) {
