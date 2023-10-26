@@ -44,11 +44,11 @@ export default function Item({ menus }) {
 
             if (response.status === 201) {
                 // Order created successfully
-                console.log(response.data);
+                //console.log(response.data);
                 // You can also update the state or take other actions
             } else {
                 // Creation failed
-                console.log(response.data);
+                //console.log(response.data);
             }
         } catch (error) {
             // Handle network errors

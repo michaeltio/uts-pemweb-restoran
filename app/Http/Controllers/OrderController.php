@@ -14,22 +14,22 @@ class OrderController extends Controller
     //create new order
     public function addToCart(Request $request)
     {
-        return response()->json(['data' => Auth::User()]);
+
         //var_dump(Auth::User());
         // if (Auth::check()) {
-        // try {
-        //     $order = new Order();
-        //     $order->user_id = 1;
-        //     // $order->user_id = $request->input('user_id');
-        //     $order->name_menu = $request->input('name_menu');
-        //     $order->price = $request->input('price');
-        //     $order->save();
+        try {
+            $order = new Order();
+            // $order->user_id = 1;
+            //$order->user_id = $request->input('user_id');
+            $order->name_menu = $request->input('name_menu');
+            $order->price = $request->input('price');
+            $order->save();
 
-        //     return Auth::User();
-        // } catch (\Exception $e) {
+            return response()->json(['message' => "berhasil masukin"]);
+        } catch (\Exception $e) {
 
-        //     return response()->json(['error' => $e], 500);
-        // }
+            return response()->json(['error' => "ga berhasil"], 500);
+        }
 
         // } else {
         //return response()->json(['message' => 'Not Auth'], 201);
